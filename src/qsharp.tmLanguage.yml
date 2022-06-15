@@ -3,7 +3,11 @@ scopeName: source.qs
 fileTypes: [qs]
 patterns:
 - include: '#comments'
+- include: '#library'
 - include: '#operations'
+- include: '#types'
+- include: '#constants'
+- include: '#strings'
 
 repository:
   comments:

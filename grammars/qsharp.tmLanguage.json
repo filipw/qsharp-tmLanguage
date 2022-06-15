@@ -10,6 +10,18 @@
 		},
 		{
 			"include": "#operations"
+		},
+		{
+			"include": "#types"
+		},
+		{
+			"include": "#library"
+		},
+		{
+			"include": "#constants"
+		},
+		{
+			"include": "#strings"
 		}
 	],
 	"repository": {
