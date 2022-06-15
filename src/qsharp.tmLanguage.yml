@@ -9,11 +9,30 @@ repository:
   comments:
     patterns: 
       - name: comment.line.double-slash
-        match: \\/\\/.*$
+        match: \/\/.*$
       - name: comment.documentation
-        match: \\/\\/\\/.*$
+        match: \/\/\/.*$
   operations:
     patterns:
       - name: keyword.other.qsharp
-        match: \\b(namespace|open|as|internal|newtype|operation|function|body|(a|A)djoint|(c|C)ontrolled|self|auto|distribute|invert|intrinsic)\\b
-  
+        match: \b(namespace|open|as|internal|newtype|operation|function|body|(a|A)djoint|(c|C)ontrolled|self|auto|distribute|invert|intrinsic)\b
+  types:
+    patterns:
+      - name: storage.type.qsharp
+        match: \b(Int|BigInt|Double|Bool|Qubit|Pauli|Result|Range|String|Unit|Ctl|Adj|is)\b
+  library:
+    patterns:
+      - name: support.function.quantum.qsharp
+        match: \b(I|X|Y|Z|H|HY|S|T|SWAP|CNOT|CCNOT|MultiX|R|RFrac|Rx|Ry|Rz|R1|R1Frac|Exp|ExpFrac|Measure|M|MultiM)\b
+  constants:
+    patterns:
+      - name: constant.language.qsharp
+        match: \b(true|false|Pauli(I|X|Y|Z)|One|Zero)\b
+  strings:
+    patterns:
+      - name: string.quoted.double.qsharp
+        begin: "(\\$|)\""
+        end: "\""
+        patterns:
+          - name: constant.character.escape.qsharp
+            match: \\.
