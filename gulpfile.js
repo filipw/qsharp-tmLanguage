@@ -1,20 +1,32 @@
 const gulp = require("gulp");
+const mocha = require("gulp-mocha");
 const ts = require("gulp-typescript");
 const js_yaml = require("js-yaml");
 const fs = require("fs");
 const path = require("path");
+const plist = require("plist");
 
-const grammarsDirectory = "grammars/";
+const grammarsDir = "grammars/";
 
 gulp.task('buildJson', done => {
     const text = fs.readFileSync("src/qsharp.tmLanguage.yml");
     const jsonData = js_yaml.load(text);
 
-    if (!fs.existsSync(grammarsDirectory)) {
-        fs.mkdirSync(grammarsDirectory);
-    }
+    ensureGrammarsDir();
 
-    fs.writeFileSync(path.join(grammarsDirectory, 'qsharp.tmLanguage.json'), JSON.stringify(jsonData, null, '\t'));
+    fs.writeFileSync(path.join(grammarsDir, 'qsharp.tmLanguage.json'), JSON.stringify(jsonData, null, '\t'));
+    done();
+});
+
+gulp.task('buildTmLanguage', done => {
+    const text = fs.readFileSync("src/qsharp.tmLanguage.yml");
+    const jsonData = js_yaml.load(text);
+    const plistData = plist.build(jsonData);
+
+    ensureGrammarsDir();
+
+    fs.writeFileSync(path.join(grammarsDir, 'qsharp.tmLanguage'), plistData);
+
     done();
 });
 
@@ -25,6 +37,23 @@ gulp.task('compile', () => {
         .pipe(gulp.dest("out/"));
 });
 
-gulp.task('default',
-    gulp.series(
-        gulp.parallel('buildJson')));
+gulp.task('test', gulp.series('compile', done => {
+    const result = gulp.src("out/test/**/*.tests.js")
+        .pipe(mocha())
+        .on("error", err => {
+            console.log(err.toString());
+            process.exit(-1);
+        });
+
+    done();
+
+    return result;
+}));
+
+function ensureGrammarsDir() {
+    if (!fs.existsSync(grammarsDir)) {
+        fs.mkdirSync(grammarsDir);
+    }
+}
+
+gulp.task('default', gulp.series(gulp.parallel('buildJson', 'buildTmLanguage'), 'test'));

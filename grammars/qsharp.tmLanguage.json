@@ -9,13 +9,13 @@
 			"include": "#comments"
 		},
 		{
+			"include": "#library"
+		},
+		{
 			"include": "#operations"
 		},
 		{
 			"include": "#types"
-		},
-		{
-			"include": "#library"
 		},
 		{
 			"include": "#constants"
