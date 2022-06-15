@@ -1,0 +1,37 @@
+{
+	"name": "Q#",
+	"scopeName": "source.qs",
+	"fileTypes": [
+		"qs"
+	],
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#operations"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.double-slash",
+					"match": "\\\\/\\\\/.*$"
+				},
+				{
+					"name": "comment.documentation",
+					"match": "\\\\/\\\\/\\\\/.*$"
+				}
+			]
+		},
+		"operations": {
+			"patterns": [
+				{
+					"name": "keyword.other.qsharp",
+					"match": "\\\\b(namespace|open|as|internal|newtype|operation|function|body|(a|A)djoint|(c|C)ontrolled|self|auto|distribute|invert|intrinsic)\\\\b"
+				}
+			]
+		}
+	}
+}
