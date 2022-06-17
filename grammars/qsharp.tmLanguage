@@ -128,6 +128,102 @@
           </dict>
         </array>
       </dict>
+      <key>callable</key>
+      <dict>
+        <key>begin</key>
+        <string>(?x)
+(?:(\.)\s*)?                                        # preceding dot?
+([_[:alpha:]][_[:alnum:]]*)\s*                      # callable name
+(?&lt;type_args&gt;\s*&lt;([^&lt;&gt;]|\g&lt;type_args&gt;)+&gt;\s*)?\s*    # type arguments
+(?=\()                                              # open parentheses of argument list</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>1</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.accessor.qsharp</string>
+          </dict>
+          <key>2</key>
+          <dict>
+            <key>name</key>
+            <string>entity.name.function.qsharp</string>
+          </dict>
+          <key>3</key>
+          <dict>
+            <key>patterns</key>
+            <array>
+              <dict>
+                <key>include</key>
+                <string>#type-parameter-list</string>
+              </dict>
+            </array>
+          </dict>
+        </dict>
+        <key>end</key>
+        <string>(?&lt;=\))</string>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>#callable</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#strings</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#constants</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#types</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#library</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#parameter</string>
+          </dict>
+        </array>
+      </dict>
+      <key>type-parameter-list</key>
+      <dict>
+        <key>begin</key>
+        <string>\&lt;</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>0</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.definition.typeparameters.begin.qsharp</string>
+          </dict>
+        </dict>
+        <key>end</key>
+        <string>\&gt;</string>
+        <key>endCaptures</key>
+        <dict>
+          <key>0</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.definition.typeparameters.end.qsharp</string>
+          </dict>
+        </dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>match</key>
+            <string>(@?[_[:alpha:]][_[:alnum:]]*)\b</string>
+            <key>captures</key>
+            <dict>
+              <key>1</key>
+              <string>entity.name.type.type-parameter.qsharp</string>
+            </dict>
+          </dict>
+        </array>
+      </dict>
     </dict>
   </dict>
 </plist>

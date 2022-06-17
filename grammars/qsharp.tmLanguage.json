@@ -83,6 +83,67 @@
 					]
 				}
 			]
+		},
+		"callable": {
+			"begin": "(?x)\n(?:(\\.)\\s*)?                                        # preceding dot?\n([_[:alpha:]][_[:alnum:]]*)\\s*                      # callable name\n(?<type_args>\\s*<([^<>]|\\g<type_args>)+>\\s*)?\\s*    # type arguments\n(?=\\()                                              # open parentheses of argument list",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.accessor.qsharp"
+				},
+				"2": {
+					"name": "entity.name.function.qsharp"
+				},
+				"3": {
+					"patterns": [
+						{
+							"include": "#type-parameter-list"
+						}
+					]
+				}
+			},
+			"end": "(?<=\\))",
+			"patterns": [
+				{
+					"include": "#callable"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#constants"
+				},
+				{
+					"include": "#types"
+				},
+				{
+					"include": "#library"
+				},
+				{
+					"include": "#parameter"
+				}
+			]
+		},
+		"type-parameter-list": {
+			"begin": "\\<",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.typeparameters.begin.qsharp"
+				}
+			},
+			"end": "\\>",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.typeparameters.end.qsharp"
+				}
+			},
+			"patterns": [
+				{
+					"match": "(@?[_[:alpha:]][_[:alnum:]]*)\\b",
+					"captures": {
+						"1": "entity.name.type.type-parameter.qsharp"
+					}
+				}
+			]
 		}
 	}
 }
