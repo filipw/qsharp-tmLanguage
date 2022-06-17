@@ -1,5 +1,5 @@
-name: Q#
-scopeName: source.qs
+name: qsharp
+scopeName: source.qsharp
 fileTypes: [qs]
 patterns:
 - include: '#comments'
@@ -8,6 +8,7 @@ patterns:
 - include: '#types'
 - include: '#constants'
 - include: '#strings'
+- include: '#callable'
 
 repository:
   comments:
@@ -51,7 +52,7 @@ repository:
         '1':
           name: punctuation.accessor.qsharp
         '2':
-          name: entity.name.function.qsharp
+          name: entity.name.callable.qsharp
         '3': 
           patterns:
             - include: '#type-parameter-list'
@@ -62,7 +63,6 @@ repository:
         - include: '#constants'
         - include: '#types'
         - include: '#library'
-        - include: '#parameter'
   type-parameter-list:
     begin: \<
     beginCaptures:
@@ -75,4 +75,5 @@ repository:
     patterns:
       - match: (@?[_[:alpha:]][_[:alnum:]]*)\b
         captures:
-          '1': entity.name.type.type-parameter.qsharp
+          '1': 
+            name: entity.name.type.type-parameter.qsharp

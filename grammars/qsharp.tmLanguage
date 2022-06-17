@@ -3,9 +3,9 @@
 <plist version="1.0">
   <dict>
     <key>name</key>
-    <string>Q#</string>
+    <string>qsharp</string>
     <key>scopeName</key>
-    <string>source.qs</string>
+    <string>source.qsharp</string>
     <key>fileTypes</key>
     <array>
       <string>qs</string>
@@ -35,6 +35,10 @@
       <dict>
         <key>include</key>
         <string>#strings</string>
+      </dict>
+      <dict>
+        <key>include</key>
+        <string>#callable</string>
       </dict>
     </array>
     <key>repository</key>
@@ -146,7 +150,7 @@
           <key>2</key>
           <dict>
             <key>name</key>
-            <string>entity.name.function.qsharp</string>
+            <string>entity.name.callable.qsharp</string>
           </dict>
           <key>3</key>
           <dict>
@@ -183,10 +187,6 @@
             <key>include</key>
             <string>#library</string>
           </dict>
-          <dict>
-            <key>include</key>
-            <string>#parameter</string>
-          </dict>
         </array>
       </dict>
       <key>type-parameter-list</key>
@@ -219,7 +219,10 @@
             <key>captures</key>
             <dict>
               <key>1</key>
-              <string>entity.name.type.type-parameter.qsharp</string>
+              <dict>
+                <key>name</key>
+                <string>entity.name.type.type-parameter.qsharp</string>
+              </dict>
             </dict>
           </dict>
         </array>

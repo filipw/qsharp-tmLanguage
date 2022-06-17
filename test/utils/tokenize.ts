@@ -34,7 +34,7 @@ const vscodeOnigurumaLib = oniguruma.loadWASM(wasmBin).then(() => {
 const registry = new Registry({
     onigLib: vscodeOnigurumaLib,
     loadGrammar: async (scopeName) => {
-        if (scopeName === 'source.qs') {
+        if (scopeName === 'source.qsharp') {
             return readFile('./grammars/qsharp.tmLanguage')
                 .then(data => parseRawGrammar(data.toString()));
         }
@@ -52,7 +52,7 @@ export async function tokenize(input: string | Input, excludeTypes: boolean = tr
 
     let tokens: Token[] = [];
     let previousStack: StackElement = null;
-    const grammar = await registry.loadGrammar('source.qs');
+    const grammar = await registry.loadGrammar('source.qsharp');
 
     for (let lineIndex = 0; lineIndex < input.lines.length; lineIndex++) {
         const line = input.lines[lineIndex];

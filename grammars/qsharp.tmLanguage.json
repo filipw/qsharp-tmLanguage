@@ -1,6 +1,6 @@
 {
-	"name": "Q#",
-	"scopeName": "source.qs",
+	"name": "qsharp",
+	"scopeName": "source.qsharp",
 	"fileTypes": [
 		"qs"
 	],
@@ -22,6 +22,9 @@
 		},
 		{
 			"include": "#strings"
+		},
+		{
+			"include": "#callable"
 		}
 	],
 	"repository": {
@@ -91,7 +94,7 @@
 					"name": "punctuation.accessor.qsharp"
 				},
 				"2": {
-					"name": "entity.name.function.qsharp"
+					"name": "entity.name.callable.qsharp"
 				},
 				"3": {
 					"patterns": [
@@ -117,9 +120,6 @@
 				},
 				{
 					"include": "#library"
-				},
-				{
-					"include": "#parameter"
 				}
 			]
 		},
@@ -140,7 +140,9 @@
 				{
 					"match": "(@?[_[:alpha:]][_[:alnum:]]*)\\b",
 					"captures": {
-						"1": "entity.name.type.type-parameter.qsharp"
+						"1": {
+							"name": "entity.name.type.type-parameter.qsharp"
+						}
 					}
 				}
 			]
