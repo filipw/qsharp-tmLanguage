@@ -225,7 +225,18 @@
               </dict>
             </dict>
           </dict>
+          <dict>
+            <key>include</key>
+            <string>#punctuation-comma</string>
+          </dict>
         </array>
+      </dict>
+      <key>punctuation-comma</key>
+      <dict>
+        <key>name</key>
+        <string>punctuation.separator.comma.qs</string>
+        <key>match</key>
+        <string>,</string>
       </dict>
     </dict>
   </dict>
