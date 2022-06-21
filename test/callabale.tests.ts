@@ -11,4 +11,16 @@ describe("Callable", () => {
             createToken("(left, right)", "source.qsharp")
         ]);
     });
+
+    it("String argument", async () => {
+        const tokens = await tokenize(`EqualityFactI(n, 0, "syndrome failure");`);
+        tokens.should.deep.equal([
+            createToken("EqualityFactI", "entity.name.callable.qsharp"),
+            createToken("(n, 0, ", "source.qsharp"),
+            createToken("\"", "string.quoted.double.qsharp"),
+            createToken("syndrome failure", "string.quoted.double.qsharp"),
+            createToken("\"", "string.quoted.double.qsharp"),
+            createToken(")", "source.qsharp"),
+        ]);
+    });
 });
