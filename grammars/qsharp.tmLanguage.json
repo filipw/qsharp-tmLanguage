@@ -151,7 +151,7 @@
 			]
 		},
 		"punctuation-comma": {
-			"name": "punctuation.separator.comma.qs",
+			"name": "punctuation.separator.comma.qsharp",
 			"match": ","
 		}
 	}

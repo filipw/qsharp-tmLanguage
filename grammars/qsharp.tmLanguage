@@ -234,7 +234,7 @@
       <key>punctuation-comma</key>
       <dict>
         <key>name</key>
-        <string>punctuation.separator.comma.qs</string>
+        <string>punctuation.separator.comma.qsharp</string>
         <key>match</key>
         <string>,</string>
       </dict>
