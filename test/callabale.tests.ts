@@ -29,8 +29,7 @@ describe("Callable", () => {
         tokens.should.deep.equal([
             createToken("Subarray", "entity.name.callable.qsharp"),
             createToken("<", "punctuation.definition.typeparameters.begin.qsharp"),
-            createToken("'", "source.qsharp"),
-            createToken("T", "entity.name.type.type-parameter.qsharp"),
+            createToken("'T", "entity.name.type.type-parameter.qsharp"),
             createToken(">", "punctuation.definition.typeparameters.end.qsharp"),
             createToken("(indices : ", "source.qsharp"),
             createToken("Int", "storage.type.qsharp"),
