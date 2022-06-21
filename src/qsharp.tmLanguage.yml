@@ -77,3 +77,7 @@ repository:
         captures:
           '1': 
             name: entity.name.type.type-parameter.qsharp
+      - include: '#punctuation-comma'
+  punctuation-comma:
+    name: punctuation.separator.comma.qs
+    match: ','
