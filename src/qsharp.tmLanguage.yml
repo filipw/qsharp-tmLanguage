@@ -8,7 +8,8 @@ patterns:
 - include: '#types'
 - include: '#constants'
 - include: '#strings'
-- include: '#callable'
+- include: '#callable-invocation'
+- include: '#callable-declaration'
 
 repository:
   comments:
@@ -20,7 +21,7 @@ repository:
   operations:
     patterns:
       - name: keyword.other.qsharp
-        match: \b(namespace|open|as|internal|newtype|operation|function|body|(a|A)djoint|(c|C)ontrolled|self|auto|distribute|invert|intrinsic)\b
+        match: \b(namespace|open|as|internal|newtype|body|(a|A)djoint|(c|C)ontrolled|self|auto|distribute|invert|intrinsic)\b
   types:
     patterns:
       - name: storage.type.qsharp
@@ -41,7 +42,7 @@ repository:
         patterns:
           - name: constant.character.escape.qsharp
             match: \\.
-  callable: 
+  callable-invocation: 
     begin: |-
       (?x)
       (?:(\.)\s*)?                                        # preceding dot?
@@ -59,6 +60,30 @@ repository:
     end: (?<=\))
     patterns:
         - include: '#callable'
+        - include: '#strings'
+        - include: '#constants'
+        - include: '#types'
+        - include: '#library'
+        - include: '#identifier'
+  callable-declaration: 
+    # begin: (?=\b(operation|function)\b)
+    # end: (?<=\})
+    begin: |-
+      (?x)
+      \b(operation|function)\b\s+
+      ([_[:alpha:]][_[:alnum:]]*)\s*                      # callable name
+      (?<type_args>\s*<([^<>]|\g<type_args>)+>\s*)?\s*    # type arguments
+      (?=\()                                              # open parentheses of argument list
+    beginCaptures:
+        '1':
+          name: keyword.other.callable.qsharp
+        '2':
+          name: entity.name.callable.qsharp
+        '3': 
+          patterns:
+            - include: '#type-parameter-list'
+    end: (?<=\))
+    patterns:
         - include: '#strings'
         - include: '#constants'
         - include: '#types'
@@ -81,3 +106,6 @@ repository:
   punctuation-comma:
     name: punctuation.separator.comma.qsharp
     match: ','
+  identifier:
+    name: variable.other.readwrite.qsharp
+    match: '@?[_[:alpha:]][_[:alnum:]]*'

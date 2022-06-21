@@ -38,7 +38,11 @@
       </dict>
       <dict>
         <key>include</key>
-        <string>#callable</string>
+        <string>#callable-invocation</string>
+      </dict>
+      <dict>
+        <key>include</key>
+        <string>#callable-declaration</string>
       </dict>
     </array>
     <key>repository</key>
@@ -69,7 +73,7 @@
             <key>name</key>
             <string>keyword.other.qsharp</string>
             <key>match</key>
-            <string>\b(namespace|open|as|internal|newtype|operation|function|body|(a|A)djoint|(c|C)ontrolled|self|auto|distribute|invert|intrinsic)\b</string>
+            <string>\b(namespace|open|as|internal|newtype|body|(a|A)djoint|(c|C)ontrolled|self|auto|distribute|invert|intrinsic)\b</string>
           </dict>
         </array>
       </dict>
@@ -132,7 +136,7 @@
           </dict>
         </array>
       </dict>
-      <key>callable</key>
+      <key>callable-invocation</key>
       <dict>
         <key>begin</key>
         <string>(?x)
@@ -171,6 +175,63 @@
             <key>include</key>
             <string>#callable</string>
           </dict>
+          <dict>
+            <key>include</key>
+            <string>#strings</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#constants</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#types</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#library</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#identifier</string>
+          </dict>
+        </array>
+      </dict>
+      <key>callable-declaration</key>
+      <dict>
+        <key>begin</key>
+        <string>(?x)
+\b(operation|function)\b\s+
+([_[:alpha:]][_[:alnum:]]*)\s*                      # callable name
+(?&lt;type_args&gt;\s*&lt;([^&lt;&gt;]|\g&lt;type_args&gt;)+&gt;\s*)?\s*    # type arguments
+(?=\()                                              # open parentheses of argument list</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>1</key>
+          <dict>
+            <key>name</key>
+            <string>keyword.other.callable.qsharp</string>
+          </dict>
+          <key>2</key>
+          <dict>
+            <key>name</key>
+            <string>entity.name.callable.qsharp</string>
+          </dict>
+          <key>3</key>
+          <dict>
+            <key>patterns</key>
+            <array>
+              <dict>
+                <key>include</key>
+                <string>#type-parameter-list</string>
+              </dict>
+            </array>
+          </dict>
+        </dict>
+        <key>end</key>
+        <string>(?&lt;=\))</string>
+        <key>patterns</key>
+        <array>
           <dict>
             <key>include</key>
             <string>#strings</string>
@@ -237,6 +298,13 @@
         <string>punctuation.separator.comma.qsharp</string>
         <key>match</key>
         <string>,</string>
+      </dict>
+      <key>identifier</key>
+      <dict>
+        <key>name</key>
+        <string>variable.other.readwrite.qsharp</string>
+        <key>match</key>
+        <string>@?[_[:alpha:]][_[:alnum:]]*</string>
       </dict>
     </dict>
   </dict>

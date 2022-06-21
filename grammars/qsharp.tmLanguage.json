@@ -24,7 +24,10 @@
 			"include": "#strings"
 		},
 		{
-			"include": "#callable"
+			"include": "#callable-invocation"
+		},
+		{
+			"include": "#callable-declaration"
 		}
 	],
 	"repository": {
@@ -44,7 +47,7 @@
 			"patterns": [
 				{
 					"name": "keyword.other.qsharp",
-					"match": "\\b(namespace|open|as|internal|newtype|operation|function|body|(a|A)djoint|(c|C)ontrolled|self|auto|distribute|invert|intrinsic)\\b"
+					"match": "\\b(namespace|open|as|internal|newtype|body|(a|A)djoint|(c|C)ontrolled|self|auto|distribute|invert|intrinsic)\\b"
 				}
 			]
 		},
@@ -87,7 +90,7 @@
 				}
 			]
 		},
-		"callable": {
+		"callable-invocation": {
 			"begin": "(?x)\n(?:(\\.)\\s*)?                                        # preceding dot?\n([_[:alpha:]][_[:alnum:]]*)\\s*                      # callable name\n(?<type_args>\\s*<([^<>]|\\g<type_args>)+>\\s*)?\\s*    # type arguments\n(?=\\()                                              # open parentheses of argument list",
 			"beginCaptures": {
 				"1": {
@@ -109,6 +112,42 @@
 				{
 					"include": "#callable"
 				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#constants"
+				},
+				{
+					"include": "#types"
+				},
+				{
+					"include": "#library"
+				},
+				{
+					"include": "#identifier"
+				}
+			]
+		},
+		"callable-declaration": {
+			"begin": "(?x)\n\\b(operation|function)\\b\\s+\n([_[:alpha:]][_[:alnum:]]*)\\s*                      # callable name\n(?<type_args>\\s*<([^<>]|\\g<type_args>)+>\\s*)?\\s*    # type arguments\n(?=\\()                                              # open parentheses of argument list",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.other.callable.qsharp"
+				},
+				"2": {
+					"name": "entity.name.callable.qsharp"
+				},
+				"3": {
+					"patterns": [
+						{
+							"include": "#type-parameter-list"
+						}
+					]
+				}
+			},
+			"end": "(?<=\\))",
+			"patterns": [
 				{
 					"include": "#strings"
 				},
@@ -153,6 +192,10 @@
 		"punctuation-comma": {
 			"name": "punctuation.separator.comma.qsharp",
 			"match": ","
+		},
+		"identifier": {
+			"name": "variable.other.readwrite.qsharp",
+			"match": "@?[_[:alpha:]][_[:alnum:]]*"
 		}
 	}
 }
