@@ -5,28 +5,47 @@ describe("Callable invocation", () => {
     before(() => { should(); });
 
     it("Two arguments", async () => {
-        const tokens = await tokenize("ApplyFermionicSWAP(left, right);");
+        const tokens = await tokenize("ApplyFermionicSWAP(left, right)");
         tokens.should.deep.equal([
             createToken("ApplyFermionicSWAP", "entity.name.callable.qsharp"),
-            createToken("(", "source.qsharp"),
+            createToken("(", "punctuation.parenthesis.open.qsharp"),
             createToken("left", "variable.other.readwrite.qsharp"),
-            createToken(", ", "source.qsharp"),
+            createToken(",", "punctuation.separator.comma.qsharp"),
+            createToken(" ", "source.qsharp"),
             createToken("right", "variable.other.readwrite.qsharp"),
-            createToken(")", "source.qsharp"),
+            createToken(")", "punctuation.parenthesis.close.qsharp"),
         ]);
     });
 
     it("String argument", async () => {
-        const tokens = await tokenize(`EqualityFactI(n, 0, "syndrome failure");`);
+        const tokens = await tokenize(`EqualityFactI(n, 0, "syndrome failure")`);
         tokens.should.deep.equal([
             createToken("EqualityFactI", "entity.name.callable.qsharp"),
-            createToken("(", "source.qsharp"),
+            createToken("(", "punctuation.parenthesis.open.qsharp"),
             createToken("n", "variable.other.readwrite.qsharp"),
-            createToken(", 0, ", "source.qsharp"),
+            createToken(",", "punctuation.separator.comma.qsharp"),
+            createToken(" 0", "source.qsharp"),
+            createToken(",", "punctuation.separator.comma.qsharp"),
+            createToken(" ", "source.qsharp"),
             createToken("\"", "string.quoted.double.qsharp"),
             createToken("syndrome failure", "string.quoted.double.qsharp"),
             createToken("\"", "string.quoted.double.qsharp"),
-            createToken(")", "source.qsharp"),
+            createToken(")", "punctuation.parenthesis.close.qsharp"),
+        ]);
+    });
+
+    it("Nested invocation", async () => {
+        const tokens = await tokenize(`PowD(Cos(angle), 4.0)`);
+        tokens.should.deep.equal([
+            createToken("PowD", "entity.name.callable.qsharp"),
+            createToken("(", "punctuation.parenthesis.open.qsharp"),
+            createToken("Cos", "entity.name.callable.qsharp"),
+            createToken("(", "punctuation.parenthesis.open.qsharp"),
+            createToken("angle", "variable.other.readwrite.qsharp"),
+            createToken(")", "punctuation.parenthesis.close.qsharp"),
+            createToken(",", "punctuation.separator.comma.qsharp"),
+            createToken(" 4.0", "source.qsharp"),
+            createToken(")", "punctuation.parenthesis.close.qsharp"),
         ]);
     });
 });

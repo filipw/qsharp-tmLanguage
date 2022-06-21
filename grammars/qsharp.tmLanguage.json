@@ -110,22 +110,7 @@
 			"end": "(?<=\\))",
 			"patterns": [
 				{
-					"include": "#callable"
-				},
-				{
-					"include": "#strings"
-				},
-				{
-					"include": "#constants"
-				},
-				{
-					"include": "#types"
-				},
-				{
-					"include": "#library"
-				},
-				{
-					"include": "#identifier"
+					"include": "#argument-list"
 				}
 			]
 		},
@@ -189,6 +174,28 @@
 				}
 			]
 		},
+		"argument-list": {
+			"begin": "\\(",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.parenthesis.open.qsharp"
+				}
+			},
+			"end": "\\)",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.parenthesis.close.qsharp"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#argument"
+				},
+				{
+					"include": "#punctuation-comma"
+				}
+			]
+		},
 		"punctuation-comma": {
 			"name": "punctuation.separator.comma.qsharp",
 			"match": ","
@@ -196,6 +203,28 @@
 		"identifier": {
 			"name": "variable.other.readwrite.qsharp",
 			"match": "@?[_[:alpha:]][_[:alnum:]]*"
+		},
+		"argument": {
+			"patterns": [
+				{
+					"include": "#callable-invocation"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#identifier"
+				},
+				{
+					"include": "#constants"
+				},
+				{
+					"include": "#types"
+				},
+				{
+					"include": "#library"
+				}
+			]
 		}
 	}
 }

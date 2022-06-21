@@ -18,22 +18,27 @@ repository:
         match: \/\/.*$
       - name: comment.documentation
         match: \/\/\/.*$
+
   operations:
     patterns:
       - name: keyword.other.qsharp
         match: \b(namespace|open|as|internal|newtype|body|(a|A)djoint|(c|C)ontrolled|self|auto|distribute|invert|intrinsic)\b
+
   types:
     patterns:
       - name: storage.type.qsharp
         match: \b(Int|BigInt|Double|Bool|Qubit|Pauli|Result|Range|String|Unit|Ctl|Adj|is)\b
+
   library:
     patterns:
       - name: support.function.quantum.qsharp
         match: \b(I|X|Y|Z|H|HY|S|T|SWAP|CNOT|CCNOT|MultiX|R|RFrac|Rx|Ry|Rz|R1|R1Frac|Exp|ExpFrac|Measure|M|MultiM)\b
+
   constants:
     patterns:
       - name: constant.language.qsharp
         match: \b(true|false|Pauli(I|X|Y|Z)|One|Zero)\b
+
   strings:
     patterns:
       - name: string.quoted.double.qsharp
@@ -42,6 +47,7 @@ repository:
         patterns:
           - name: constant.character.escape.qsharp
             match: \\.
+
   callable-invocation: 
     begin: |-
       (?x)
@@ -59,15 +65,9 @@ repository:
             - include: '#type-parameter-list'
     end: (?<=\))
     patterns:
-        - include: '#callable'
-        - include: '#strings'
-        - include: '#constants'
-        - include: '#types'
-        - include: '#library'
-        - include: '#identifier'
+        - include: '#argument-list'
+
   callable-declaration: 
-    # begin: (?=\b(operation|function)\b)
-    # end: (?<=\})
     begin: |-
       (?x)
       \b(operation|function)\b\s+
@@ -88,6 +88,7 @@ repository:
         - include: '#constants'
         - include: '#types'
         - include: '#library'
+
   type-parameter-list:
     begin: \<
     beginCaptures:
@@ -103,9 +104,31 @@ repository:
           '1': 
             name: entity.name.type.type-parameter.qsharp
       - include: '#punctuation-comma'
+
+  argument-list:
+    begin: \(
+    beginCaptures:
+      '0': { name: punctuation.parenthesis.open.qsharp }
+    end: \)
+    endCaptures:
+      '0': { name: punctuation.parenthesis.close.qsharp }
+    patterns:
+    - include: '#argument'
+    - include: '#punctuation-comma'
+
   punctuation-comma:
     name: punctuation.separator.comma.qsharp
     match: ','
+
   identifier:
     name: variable.other.readwrite.qsharp
     match: '@?[_[:alpha:]][_[:alnum:]]*'
+
+  argument:
+    patterns:
+      - include: '#callable-invocation'
+      - include: '#strings'
+      - include: '#identifier'
+      - include: '#constants'
+      - include: '#types'
+      - include: '#library'

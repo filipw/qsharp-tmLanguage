@@ -173,27 +173,7 @@
         <array>
           <dict>
             <key>include</key>
-            <string>#callable</string>
-          </dict>
-          <dict>
-            <key>include</key>
-            <string>#strings</string>
-          </dict>
-          <dict>
-            <key>include</key>
-            <string>#constants</string>
-          </dict>
-          <dict>
-            <key>include</key>
-            <string>#types</string>
-          </dict>
-          <dict>
-            <key>include</key>
-            <string>#library</string>
-          </dict>
-          <dict>
-            <key>include</key>
-            <string>#identifier</string>
+            <string>#argument-list</string>
           </dict>
         </array>
       </dict>
@@ -292,6 +272,40 @@
           </dict>
         </array>
       </dict>
+      <key>argument-list</key>
+      <dict>
+        <key>begin</key>
+        <string>\(</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>0</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.parenthesis.open.qsharp</string>
+          </dict>
+        </dict>
+        <key>end</key>
+        <string>\)</string>
+        <key>endCaptures</key>
+        <dict>
+          <key>0</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.parenthesis.close.qsharp</string>
+          </dict>
+        </dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>#argument</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#punctuation-comma</string>
+          </dict>
+        </array>
+      </dict>
       <key>punctuation-comma</key>
       <dict>
         <key>name</key>
@@ -305,6 +319,36 @@
         <string>variable.other.readwrite.qsharp</string>
         <key>match</key>
         <string>@?[_[:alpha:]][_[:alnum:]]*</string>
+      </dict>
+      <key>argument</key>
+      <dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>#callable-invocation</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#strings</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#identifier</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#constants</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#types</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#library</string>
+          </dict>
+        </array>
       </dict>
     </dict>
   </dict>
