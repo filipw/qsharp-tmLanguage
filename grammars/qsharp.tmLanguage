@@ -18,6 +18,10 @@
       </dict>
       <dict>
         <key>include</key>
+        <string>#keywords</string>
+      </dict>
+      <dict>
+        <key>include</key>
         <string>#library</string>
       </dict>
       <dict>
@@ -62,6 +66,35 @@
             <string>comment.documentation</string>
             <key>match</key>
             <string>\/\/\/.*$</string>
+          </dict>
+        </array>
+      </dict>
+      <key>keywords</key>
+      <dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>name</key>
+            <string>keyword.control.qsharp</string>
+            <key>match</key>
+            <string>\b(use|using|borrow|borrowing|mutable|let|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b</string>
+          </dict>
+          <dict>
+            <key>name</key>
+            <string>keyword.other.qsharp</string>
+            <key>match</key>
+            <string>\b(new|not|and|or|w\/)\b</string>
+          </dict>
+          <dict>
+            <key>comment</key>
+            <string>C# reserved words which can't be used in Q#</string>
+            <key>name</key>
+            <string>invalid.illegal.qsharp</string>
+            <key>match</key>
+            <string>\b(abstract|base|bool|break|byte|case|catch|char|checked|class|const|continue|decimal|default|delegate|do|double)\b
+\b(enum|event|explicit|extern|finally|fixed|float|foreach|goto|implicit|int|interface|lock|long)\b
+\b(null|object|operator|out|override|params|private|protected|public|readonly|ref|sbyte|sealed|short|sizeof|stackalloc)\b
+\b(static|string|struct|switch|this|throw|try|typeof|unit|ulong|unchecked|unsafe|ushort|virtual|void|volatile)\b</string>
           </dict>
         </array>
       </dict>
@@ -158,7 +191,7 @@
           <key>2</key>
           <dict>
             <key>name</key>
-            <string>entity.name.callable.qsharp</string>
+            <string>entity.name.function.qsharp</string>
           </dict>
           <key>3</key>
           <dict>
@@ -199,7 +232,7 @@
           <key>2</key>
           <dict>
             <key>name</key>
-            <string>entity.name.callable.qsharp</string>
+            <string>entity.name.function.qsharp</string>
           </dict>
           <key>3</key>
           <dict>
@@ -325,10 +358,6 @@
           <dict>
             <key>include</key>
             <string>#parameter</string>
-          </dict>
-          <dict>
-            <key>include</key>
-            <string>#parameter-list</string>
           </dict>
           <dict>
             <key>include</key>

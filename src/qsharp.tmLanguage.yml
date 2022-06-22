@@ -3,6 +3,7 @@ scopeName: source.qsharp
 fileTypes: [qs]
 patterns:
 - include: '#comments'
+- include: '#keywords'
 - include: '#library'
 - include: '#operations'
 - include: '#types'
@@ -18,6 +19,20 @@ repository:
         match: \/\/.*$
       - name: comment.documentation
         match: \/\/\/.*$
+
+  keywords:
+    patterns:
+      - name: keyword.control.qsharp
+        match: \b(use|using|borrow|borrowing|mutable|let|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b
+      - name: keyword.other.qsharp
+        match: \b(new|not|and|or|w\/)\b
+      - comment: C# reserved words which can't be used in Q#
+        name: invalid.illegal.qsharp
+        match: |-
+          \b(abstract|base|bool|break|byte|case|catch|char|checked|class|const|continue|decimal|default|delegate|do|double)\b
+          \b(enum|event|explicit|extern|finally|fixed|float|foreach|goto|implicit|int|interface|lock|long)\b
+          \b(null|object|operator|out|override|params|private|protected|public|readonly|ref|sbyte|sealed|short|sizeof|stackalloc)\b
+          \b(static|string|struct|switch|this|throw|try|typeof|unit|ulong|unchecked|unsafe|ushort|virtual|void|volatile)\b
 
   operations:
     patterns:
@@ -60,7 +75,7 @@ repository:
         '1':
           name: punctuation.accessor.qsharp
         '2':
-          name: entity.name.callable.qsharp
+          name: entity.name.function.qsharp
         '3': 
           patterns:
             - include: '#type-parameter-list'
@@ -79,7 +94,7 @@ repository:
         '1':
           name: keyword.other.callable.qsharp
         '2':
-          name: entity.name.callable.qsharp
+          name: entity.name.function.qsharp
         '3': 
           patterns:
             - include: '#type-parameter-list'

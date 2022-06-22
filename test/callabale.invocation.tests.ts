@@ -7,7 +7,7 @@ describe("Callable invocation", () => {
     it("Two arguments", async () => {
         const tokens = await tokenize("ApplyFermionicSWAP(left, right)");
         tokens.should.deep.equal([
-            createToken("ApplyFermionicSWAP", "entity.name.callable.qsharp"),
+            createToken("ApplyFermionicSWAP", "entity.name.function.qsharp"),
             createToken("(", "punctuation.parenthesis.open.qsharp"),
             createToken("left", "variable.other.readwrite.qsharp"),
             createToken(",", "punctuation.separator.comma.qsharp"),
@@ -20,7 +20,7 @@ describe("Callable invocation", () => {
     it("String argument", async () => {
         const tokens = await tokenize(`EqualityFactI(n, 0, "syndrome failure")`);
         tokens.should.deep.equal([
-            createToken("EqualityFactI", "entity.name.callable.qsharp"),
+            createToken("EqualityFactI", "entity.name.function.qsharp"),
             createToken("(", "punctuation.parenthesis.open.qsharp"),
             createToken("n", "variable.other.readwrite.qsharp"),
             createToken(",", "punctuation.separator.comma.qsharp"),
@@ -37,9 +37,9 @@ describe("Callable invocation", () => {
     it("Nested invocation", async () => {
         const tokens = await tokenize(`PowD(Cos(angle), 4.0)`);
         tokens.should.deep.equal([
-            createToken("PowD", "entity.name.callable.qsharp"),
+            createToken("PowD", "entity.name.function.qsharp"),
             createToken("(", "punctuation.parenthesis.open.qsharp"),
-            createToken("Cos", "entity.name.callable.qsharp"),
+            createToken("Cos", "entity.name.function.qsharp"),
             createToken("(", "punctuation.parenthesis.open.qsharp"),
             createToken("angle", "variable.other.readwrite.qsharp"),
             createToken(")", "punctuation.parenthesis.close.qsharp"),

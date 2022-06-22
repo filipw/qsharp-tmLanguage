@@ -9,7 +9,7 @@ describe("Callable declarations", () => {
         tokens.should.deep.equal([
             createToken("function", "keyword.other.callable.qsharp"),
             createToken(" ", "source.qsharp"),
-            createToken("Subarray", "entity.name.callable.qsharp"),
+            createToken("Subarray", "entity.name.function.qsharp"),
             createToken("<", "punctuation.definition.typeparameters.begin.qsharp"),
             createToken("'T", "entity.name.type.type-parameter.qsharp"),
             createToken(">", "punctuation.definition.typeparameters.end.qsharp"),
@@ -43,7 +43,7 @@ describe("Callable declarations", () => {
         tokens.should.deep.equal([
             createToken("operation", "keyword.other.callable.qsharp"),
             createToken(" ", "source.qsharp"),
-            createToken("Delay", "entity.name.callable.qsharp"),
+            createToken("Delay", "entity.name.function.qsharp"),
             createToken("<", "punctuation.definition.typeparameters.begin.qsharp"),
             createToken("'T", "entity.name.type.type-parameter.qsharp"),
             createToken(",", "punctuation.separator.comma.qsharp"),
