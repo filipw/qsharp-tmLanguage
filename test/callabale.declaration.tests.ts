@@ -4,7 +4,7 @@ import { tokenize, createToken, Token } from './utils/tokenize';
 describe("Callable declarations", () => {
     before(() => { should(); });
 
-    it("Typed parameter", async () => {
+    it("Typed parameter signature", async () => {
         const tokens = await tokenize(`function Subarray<'T>(indices : Int[], array : 'T[]) : 'T[]`);
         tokens.should.deep.equal([
             createToken("function", "keyword.other.callable.qsharp"),
@@ -38,7 +38,7 @@ describe("Callable declarations", () => {
         ]);
     });
 
-    it("Twp typed parameters", async () => {
+    it("Twp typed parameters signature", async () => {
         const tokens = await tokenize(`operation Delay<'T, 'U>(op : ('T => 'U), arg : 'T, aux : Unit) : 'U`);
         tokens.should.deep.equal([
             createToken("operation", "keyword.other.callable.qsharp"),
