@@ -9,7 +9,11 @@ To contribute, clone the repo and run (requires Node.js and `npm` to be installe
 * `npm install` to install all dependencies
 * Run `npm run compile` to build and run tests
 
+The source grammar is located at `src/qsharp.tmLanguage.yml` and is the core file to be maintained.
+
 The output are the grammar files located at:
 
 * `grammars/qsharp.tmLanguage`
 * `grammars/qsharp.tmLanguage.json`
+
+These two files are committed to source control to allow easy access to latest grammars, but they should not be edited by hand.
