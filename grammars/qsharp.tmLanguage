@@ -87,6 +87,10 @@
             <key>match</key>
             <string>\b(Int|BigInt|Double|Bool|Qubit|Pauli|Result|Range|String|Unit|Ctl|Adj|is)\b</string>
           </dict>
+          <dict>
+            <key>include</key>
+            <string>#type-array-suffix</string>
+          </dict>
         </array>
       </dict>
       <key>library</key>
@@ -214,19 +218,7 @@
         <array>
           <dict>
             <key>include</key>
-            <string>#strings</string>
-          </dict>
-          <dict>
-            <key>include</key>
-            <string>#constants</string>
-          </dict>
-          <dict>
-            <key>include</key>
-            <string>#types</string>
-          </dict>
-          <dict>
-            <key>include</key>
-            <string>#library</string>
+            <string>#parameter-list</string>
           </dict>
         </array>
       </dict>
@@ -306,6 +298,44 @@
           </dict>
         </array>
       </dict>
+      <key>parameter-list</key>
+      <dict>
+        <key>begin</key>
+        <string>(\()</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>0</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.parenthesis.open.qsharp</string>
+          </dict>
+        </dict>
+        <key>end</key>
+        <string>(\))</string>
+        <key>endCaptures</key>
+        <dict>
+          <key>0</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.parenthesis.close.qsharp</string>
+          </dict>
+        </dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>#parameter</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#parameter-list</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#punctuation-comma</string>
+          </dict>
+        </array>
+      </dict>
       <key>punctuation-comma</key>
       <dict>
         <key>name</key>
@@ -347,6 +377,71 @@
           <dict>
             <key>include</key>
             <string>#library</string>
+          </dict>
+        </array>
+      </dict>
+      <key>parameter</key>
+      <dict>
+        <key>begin</key>
+        <string>(@?[_[:alpha:]][_[:alnum:]]*)\s*(:)</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>1</key>
+          <dict>
+            <key>name</key>
+            <string>entity.name.variable.parameter.qsharp</string>
+          </dict>
+          <key>2</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.separator.colon.qsharp</string>
+          </dict>
+        </dict>
+        <key>end</key>
+        <string>(?=(,|\)|\]))</string>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>#constants</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#types</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#library</string>
+          </dict>
+        </array>
+      </dict>
+      <key>type-array-suffix</key>
+      <dict>
+        <key>begin</key>
+        <string>\[</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>0</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.squarebracket.open.qsharp</string>
+          </dict>
+        </dict>
+        <key>end</key>
+        <string>\]</string>
+        <key>endCaptures</key>
+        <dict>
+          <key>0</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.squarebracket.close.qsharp</string>
+          </dict>
+        </dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>#punctuation-comma</string>
           </dict>
         </array>
       </dict>
