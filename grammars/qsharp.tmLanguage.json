@@ -31,6 +31,9 @@
 		},
 		{
 			"include": "#callable-declaration"
+		},
+		{
+			"include": "#udt-declaration"
 		}
 	],
 	"repository": {
@@ -67,7 +70,7 @@
 			"patterns": [
 				{
 					"name": "keyword.other.qsharp",
-					"match": "\\b(namespace|open|as|internal|newtype|body|(a|A)djoint|(c|C)ontrolled|self|auto|distribute|invert|intrinsic)\\b"
+					"match": "\\b(namespace|open|as|internal|body|(a|A)djoint|(c|C)ontrolled|self|auto|distribute|invert|intrinsic)\\b"
 				}
 			]
 		},
@@ -176,7 +179,7 @@
 			},
 			"patterns": [
 				{
-					"match": "(@?'[_[:alpha:]][_[:alnum:]]*)\\b",
+					"match": "('[_[:alpha:]][_[:alnum:]]*)\\b",
 					"captures": {
 						"1": {
 							"name": "entity.name.type.type-parameter.qsharp"
@@ -238,7 +241,7 @@
 		},
 		"identifier": {
 			"name": "variable.other.readwrite.qsharp",
-			"match": "@?[_[:alpha:]][_[:alnum:]]*"
+			"match": "[_[:alpha:]][_[:alnum:]]*"
 		},
 		"argument": {
 			"patterns": [
@@ -301,6 +304,70 @@
 			"patterns": [
 				{
 					"include": "#punctuation-comma"
+				}
+			]
+		},
+		"udt-declaration": {
+			"begin": "(?=\\bnewtype\\b)",
+			"end": "(?<=\\)|;)",
+			"patterns": [
+				{
+					"begin": "(?x)\n(newtype)\\b\\s+\n([_[:alpha:]][_[:alnum:]]*)",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.other.udt.qsharp"
+						},
+						"2": {
+							"name": "entity.name.type.udt.qsharp"
+						}
+					},
+					"end": "(?=\\())"
+				},
+				{
+					"begin": "(?:\\s*=\\s*)(\\()",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.parenthesis.open.qsharp"
+						}
+					},
+					"end": "\\)",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.parenthesis.close.qsharp"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#constants"
+						},
+						{
+							"include": "#punctuation-comma"
+						},
+						{
+							"include": "#types"
+						},
+						{
+							"include": "#library"
+						}
+					]
+				},
+				{
+					"begin": "(?:\\s*=\\s*)",
+					"end": "(?=;)",
+					"patterns": [
+						{
+							"include": "#constants"
+						},
+						{
+							"include": "#punctuation-comma"
+						},
+						{
+							"include": "#types"
+						},
+						{
+							"include": "#library"
+						}
+					]
 				}
 			]
 		}
