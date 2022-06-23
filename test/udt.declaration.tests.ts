@@ -35,4 +35,25 @@ describe("User Defined Type declarations", () => {
             createToken(")", "punctuation.parenthesis.close.qsharp"),
         ]);
     });
+
+    it("Multi line UDT", async () => {
+        const tokens = await tokenize(`internal newtype MCMTMask = (
+ControlMask : Int, TargetMask : Int
+);`);
+        tokens.should.deep.equal([
+            createToken("internal", "keyword.other.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("newtype", "keyword.other.udt.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("MCMTMask", "entity.name.type.udt.qsharp"),
+            createToken(" = ", "source.qsharp"),
+            createToken("(", "punctuation.parenthesis.open.qsharp"),
+            createToken("ControlMask : ", "source.qsharp"),
+            createToken("Int", "storage.type.qsharp"),
+            createToken(",", "punctuation.separator.comma.qsharp"),
+            createToken(" TargetMask : ", "source.qsharp"),
+            createToken("Int", "storage.type.qsharp"),
+            createToken(")", "punctuation.parenthesis.close.qsharp"),
+        ]);
+    });
 });
