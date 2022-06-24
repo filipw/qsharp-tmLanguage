@@ -21,4 +21,22 @@ describe("Literals", () => {
             createToken("false", "constant.language.boolean.false.qsharp")
         ]);
     });
+
+    it("Zero", async () => {
+        const tokens = await tokenize("return input == Zero;");
+        tokens.should.deep.equal([
+            createToken("return", "keyword.control.qsharp"),
+            createToken(" input == ", "source.qsharp"),
+            createToken("Zero", "constant.language.result.zero.qsharp")
+        ]);
+    });
+
+    it("One", async () => {
+        const tokens = await tokenize("return input == One;");
+        tokens.should.deep.equal([
+            createToken("return", "keyword.control.qsharp"),
+            createToken(" input == ", "source.qsharp"),
+            createToken("One", "constant.language.result.one.qsharp")
+        ]);
+    });
 });

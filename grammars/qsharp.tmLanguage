@@ -56,6 +56,10 @@
         <key>include</key>
         <string>#boolean-literal</string>
       </dict>
+      <dict>
+        <key>include</key>
+        <string>#result-literal</string>
+      </dict>
     </array>
     <key>repository</key>
     <dict>
@@ -154,7 +158,7 @@
             <key>name</key>
             <string>constant.language.qsharp</string>
             <key>match</key>
-            <string>\b(Pauli(I|X|Y|Z)|One|Zero)\b</string>
+            <string>\b(Pauli(I|X|Y|Z))\b</string>
           </dict>
         </array>
       </dict>
@@ -594,6 +598,24 @@
             <string>constant.language.boolean.false.qsharp</string>
             <key>match</key>
             <string>(?&lt;!\.)\bfalse\b</string>
+          </dict>
+        </array>
+      </dict>
+      <key>result-literal</key>
+      <dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>name</key>
+            <string>constant.language.result.zero.qsharp</string>
+            <key>match</key>
+            <string>(?&lt;!\.)\bZero\b</string>
+          </dict>
+          <dict>
+            <key>name</key>
+            <string>constant.language.result.one.qsharp</string>
+            <key>match</key>
+            <string>(?&lt;!\.)\bOne\b</string>
           </dict>
         </array>
       </dict>

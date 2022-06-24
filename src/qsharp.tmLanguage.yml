@@ -13,6 +13,7 @@ patterns:
 - include: '#callable-declaration'
 - include: '#udt-declaration'
 - include: '#boolean-literal'
+- include: '#result-literal'
 
 repository:
   comments:
@@ -55,7 +56,7 @@ repository:
   constants:
     patterns:
       - name: constant.language.qsharp
-        match: \b(Pauli(I|X|Y|Z)|One|Zero)\b
+        match: \b(Pauli(I|X|Y|Z))\b
 
   strings:
     patterns:
@@ -217,3 +218,10 @@ repository:
       match: (?<!\.)\btrue\b
     - name: constant.language.boolean.false.qsharp
       match: (?<!\.)\bfalse\b
+
+  result-literal:
+    patterns:
+    - name: constant.language.result.zero.qsharp
+      match: (?<!\.)\bZero\b
+    - name: constant.language.result.one.qsharp
+      match: (?<!\.)\bOne\b
