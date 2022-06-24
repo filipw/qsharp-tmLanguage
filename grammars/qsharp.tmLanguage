@@ -422,7 +422,7 @@
       <key>parameter</key>
       <dict>
         <key>begin</key>
-        <string>(@?[_[:alpha:]][_[:alnum:]]*)\s*(:)</string>
+        <string>([_[:alpha:]][_[:alnum:]]*)\s*(:)</string>
         <key>beginCaptures</key>
         <dict>
           <key>1</key>
