@@ -21,7 +21,7 @@
 			"include": "#types"
 		},
 		{
-			"include": "#constants"
+			"include": "#literals"
 		},
 		{
 			"include": "#strings"
@@ -34,15 +34,22 @@
 		},
 		{
 			"include": "#udt-declaration"
-		},
-		{
-			"include": "#boolean-literal"
-		},
-		{
-			"include": "#result-literal"
 		}
 	],
 	"repository": {
+		"literals": {
+			"patterns": [
+				{
+					"include": "#boolean-literal"
+				},
+				{
+					"include": "#result-literal"
+				},
+				{
+					"include": "#pauli-literal"
+				}
+			]
+		},
 		"comments": {
 			"patterns": [
 				{
@@ -96,14 +103,6 @@
 				{
 					"name": "support.function.quantum.qsharp",
 					"match": "\\b(I|X|Y|Z|H|HY|S|T|SWAP|CNOT|CCNOT|MultiX|R|RFrac|Rx|Ry|Rz|R1|R1Frac|Exp|ExpFrac|Measure|M|MultiM)\\b"
-				}
-			]
-		},
-		"constants": {
-			"patterns": [
-				{
-					"name": "constant.language.qsharp",
-					"match": "\\b(Pauli(I|X|Y|Z))\\b"
 				}
 			]
 		},
@@ -261,7 +260,7 @@
 					"include": "#identifier"
 				},
 				{
-					"include": "#constants"
+					"include": "#literals"
 				},
 				{
 					"include": "#types"
@@ -284,7 +283,7 @@
 			"end": "(?=(,|\\)|\\]))",
 			"patterns": [
 				{
-					"include": "#constants"
+					"include": "#literals"
 				},
 				{
 					"include": "#types"
@@ -295,7 +294,7 @@
 			]
 		},
 		"type-array-suffix": {
-			"begin": "\\[",
+			"begin": "\\b\\[",
 			"beginCaptures": {
 				"0": {
 					"name": "punctuation.squarebracket.open.qsharp"
@@ -344,7 +343,7 @@
 					},
 					"patterns": [
 						{
-							"include": "#constants"
+							"include": "#literals"
 						},
 						{
 							"include": "#punctuation-comma"
@@ -362,7 +361,7 @@
 					"end": "(?=;)",
 					"patterns": [
 						{
-							"include": "#constants"
+							"include": "#literals"
 						},
 						{
 							"include": "#punctuation-comma"
@@ -398,6 +397,14 @@
 				{
 					"name": "constant.language.result.one.qsharp",
 					"match": "(?<!\\.)\\bOne\\b"
+				}
+			]
+		},
+		"pauli-literal": {
+			"patterns": [
+				{
+					"name": "constant.language.pauli.qsharp",
+					"match": "\\b(Pauli(I|X|Y|Z))\\b"
 				}
 			]
 		}

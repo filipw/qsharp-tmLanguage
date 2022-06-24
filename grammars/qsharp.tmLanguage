@@ -34,7 +34,7 @@
       </dict>
       <dict>
         <key>include</key>
-        <string>#constants</string>
+        <string>#literals</string>
       </dict>
       <dict>
         <key>include</key>
@@ -52,17 +52,27 @@
         <key>include</key>
         <string>#udt-declaration</string>
       </dict>
-      <dict>
-        <key>include</key>
-        <string>#boolean-literal</string>
-      </dict>
-      <dict>
-        <key>include</key>
-        <string>#result-literal</string>
-      </dict>
     </array>
     <key>repository</key>
     <dict>
+      <key>literals</key>
+      <dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>#boolean-literal</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#result-literal</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#pauli-literal</string>
+          </dict>
+        </array>
+      </dict>
       <key>comments</key>
       <dict>
         <key>patterns</key>
@@ -147,18 +157,6 @@
             <string>support.function.quantum.qsharp</string>
             <key>match</key>
             <string>\b(I|X|Y|Z|H|HY|S|T|SWAP|CNOT|CCNOT|MultiX|R|RFrac|Rx|Ry|Rz|R1|R1Frac|Exp|ExpFrac|Measure|M|MultiM)\b</string>
-          </dict>
-        </array>
-      </dict>
-      <key>constants</key>
-      <dict>
-        <key>patterns</key>
-        <array>
-          <dict>
-            <key>name</key>
-            <string>constant.language.qsharp</string>
-            <key>match</key>
-            <string>\b(Pauli(I|X|Y|Z))\b</string>
           </dict>
         </array>
       </dict>
@@ -409,7 +407,7 @@
           </dict>
           <dict>
             <key>include</key>
-            <string>#constants</string>
+            <string>#literals</string>
           </dict>
           <dict>
             <key>include</key>
@@ -444,7 +442,7 @@
         <array>
           <dict>
             <key>include</key>
-            <string>#constants</string>
+            <string>#literals</string>
           </dict>
           <dict>
             <key>include</key>
@@ -459,7 +457,7 @@
       <key>type-array-suffix</key>
       <dict>
         <key>begin</key>
-        <string>\[</string>
+        <string>\b\[</string>
         <key>beginCaptures</key>
         <dict>
           <key>0</key>
@@ -540,7 +538,7 @@
             <array>
               <dict>
                 <key>include</key>
-                <string>#constants</string>
+                <string>#literals</string>
               </dict>
               <dict>
                 <key>include</key>
@@ -565,7 +563,7 @@
             <array>
               <dict>
                 <key>include</key>
-                <string>#constants</string>
+                <string>#literals</string>
               </dict>
               <dict>
                 <key>include</key>
@@ -616,6 +614,18 @@
             <string>constant.language.result.one.qsharp</string>
             <key>match</key>
             <string>(?&lt;!\.)\bOne\b</string>
+          </dict>
+        </array>
+      </dict>
+      <key>pauli-literal</key>
+      <dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>name</key>
+            <string>constant.language.pauli.qsharp</string>
+            <key>match</key>
+            <string>\b(Pauli(I|X|Y|Z))\b</string>
           </dict>
         </array>
       </dict>
