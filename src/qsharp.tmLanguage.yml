@@ -123,10 +123,12 @@ repository:
   argument-list:
     begin: \(
     beginCaptures:
-      '0': { name: punctuation.parenthesis.open.qsharp }
+      '0':
+        name: punctuation.parenthesis.open.qsharp
     end: \)
     endCaptures:
-      '0': { name: punctuation.parenthesis.close.qsharp }
+      '0':
+        name: punctuation.parenthesis.close.qsharp
     patterns:
     - include: '#argument'
     - include: '#punctuation-comma'
@@ -134,10 +136,12 @@ repository:
   parameter-list:
     begin: (\()
     beginCaptures:
-      '0': { name: punctuation.parenthesis.open.qsharp }
+      '0':
+       name: punctuation.parenthesis.open.qsharp
     end: (\))
     endCaptures:
-      '0': { name: punctuation.parenthesis.close.qsharp }
+      '0':
+        name: punctuation.parenthesis.close.qsharp
     patterns:
     - include: '#parameter'
     - include: '#punctuation-comma'
@@ -162,8 +166,10 @@ repository:
   parameter:
     begin: (@?[_[:alpha:]][_[:alnum:]]*)\s*(:)
     beginCaptures:
-      '1': { name: entity.name.variable.parameter.qsharp }
-      '2': { name: punctuation.separator.colon.qsharp }
+      '1':
+        name: entity.name.variable.parameter.qsharp
+      '2':
+        name: punctuation.separator.colon.qsharp
     end: (?=(,|\)|\]))
     patterns:
       - include: '#literals'
@@ -173,10 +179,12 @@ repository:
   type-array-suffix:
     begin: \b\[
     beginCaptures:
-      '0': { name: punctuation.squarebracket.open.qsharp }
+      '0':
+        name: punctuation.squarebracket.open.qsharp
     end: \]
     endCaptures:
-      '0': { name: punctuation.squarebracket.close.qsharp }
+      '0':
+        name: punctuation.squarebracket.close.qsharp
     patterns:
     - include: '#punctuation-comma'
 
@@ -189,15 +197,19 @@ repository:
         (newtype)\b\s+
         ([_[:alpha:]][_[:alnum:]]*)
       beginCaptures:
-        '1': { name: keyword.other.udt.qsharp }
-        '2': { name: entity.name.type.udt.qsharp }
+        '1':
+          name: keyword.other.udt.qsharp
+        '2':
+          name: entity.name.type.udt.qsharp
       end: (?=\())
     - begin: (?:\s*=\s*)(\()
       beginCaptures:
-        '1': { name: punctuation.parenthesis.open.qsharp }
+        '1': 
+          name: punctuation.parenthesis.open.qsharp
       end: \)
       endCaptures:
-        '0': { name: punctuation.parenthesis.close.qsharp }
+        '0':
+          name: punctuation.parenthesis.close.qsharp
       patterns:
       - include: '#literals'
       - include: '#punctuation-comma'
