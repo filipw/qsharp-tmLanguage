@@ -52,6 +52,10 @@
         <key>include</key>
         <string>#udt-declaration</string>
       </dict>
+      <dict>
+        <key>include</key>
+        <string>#boolean-literal</string>
+      </dict>
     </array>
     <key>repository</key>
     <dict>
@@ -150,7 +154,7 @@
             <key>name</key>
             <string>constant.language.qsharp</string>
             <key>match</key>
-            <string>\b(true|false|Pauli(I|X|Y|Z)|One|Zero)\b</string>
+            <string>\b(Pauli(I|X|Y|Z)|One|Zero)\b</string>
           </dict>
         </array>
       </dict>
@@ -572,6 +576,24 @@
                 <string>#library</string>
               </dict>
             </array>
+          </dict>
+        </array>
+      </dict>
+      <key>boolean-literal</key>
+      <dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>name</key>
+            <string>constant.language.boolean.true.qsharp</string>
+            <key>match</key>
+            <string>(?&lt;!\.)\btrue\b</string>
+          </dict>
+          <dict>
+            <key>name</key>
+            <string>constant.language.boolean.false.qsharp</string>
+            <key>match</key>
+            <string>(?&lt;!\.)\bfalse\b</string>
           </dict>
         </array>
       </dict>

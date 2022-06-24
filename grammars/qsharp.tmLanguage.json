@@ -34,6 +34,9 @@
 		},
 		{
 			"include": "#udt-declaration"
+		},
+		{
+			"include": "#boolean-literal"
 		}
 	],
 	"repository": {
@@ -97,7 +100,7 @@
 			"patterns": [
 				{
 					"name": "constant.language.qsharp",
-					"match": "\\b(true|false|Pauli(I|X|Y|Z)|One|Zero)\\b"
+					"match": "\\b(Pauli(I|X|Y|Z)|One|Zero)\\b"
 				}
 			]
 		},
@@ -368,6 +371,18 @@
 							"include": "#library"
 						}
 					]
+				}
+			]
+		},
+		"boolean-literal": {
+			"patterns": [
+				{
+					"name": "constant.language.boolean.true.qsharp",
+					"match": "(?<!\\.)\\btrue\\b"
+				},
+				{
+					"name": "constant.language.boolean.false.qsharp",
+					"match": "(?<!\\.)\\bfalse\\b"
 				}
 			]
 		}
