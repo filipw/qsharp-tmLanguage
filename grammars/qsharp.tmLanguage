@@ -187,7 +187,7 @@
       <dict>
         <key>begin</key>
         <string>(?x)
-(?:(\.)\s*)?                                        # preceding dot?
+(?:(\:\:)\s*)?                                        # preceding member access
 ([_[:alpha:]][_[:alnum:]]*)\s*                      # callable name
 (?&lt;type_args&gt;\s*&lt;([^&lt;&gt;]|\g&lt;type_args&gt;)+&gt;\s*)?\s*    # type arguments
 (?=\()                                              # open parentheses of argument list</string>

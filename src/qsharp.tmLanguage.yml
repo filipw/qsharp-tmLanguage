@@ -69,7 +69,7 @@ repository:
   callable-invocation: 
     begin: |-
       (?x)
-      (?:(\.)\s*)?                                        # preceding dot?
+      (?:(\:\:)\s*)?                                        # preceding member access
       ([_[:alpha:]][_[:alnum:]]*)\s*                      # callable name
       (?<type_args>\s*<([^<>]|\g<type_args>)+>\s*)?\s*    # type arguments
       (?=\()                                              # open parentheses of argument list

@@ -48,4 +48,22 @@ describe("Callable invocation", () => {
             createToken(")", "punctuation.parenthesis.close.qsharp"),
         ]);
     });
+
+    it("Member access invocation", async () => {
+        const tokens = await tokenize(`purifiedState::Prepare(qROMIdxRegister, [], qROMGarbage)`);
+        tokens.should.deep.equal([
+            createToken("purifiedState", "source.qsharp"),
+            createToken("::", "punctuation.accessor.qsharp"),
+            createToken("Prepare", "entity.name.function.qsharp"),
+            createToken("(", "punctuation.parenthesis.open.qsharp"),
+            createToken("qROMIdxRegister", "variable.other.readwrite.qsharp"),
+            createToken(",", "punctuation.separator.comma.qsharp"),
+            createToken(" []", "source.qsharp"),
+            createToken(",", "punctuation.separator.comma.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("qROMGarbage", "variable.other.readwrite.qsharp"),
+            createToken(")", "punctuation.parenthesis.close.qsharp"),
+        ]);
+    });
+    
 });

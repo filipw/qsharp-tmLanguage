@@ -122,7 +122,7 @@
 			]
 		},
 		"callable-invocation": {
-			"begin": "(?x)\n(?:(\\.)\\s*)?                                        # preceding dot?\n([_[:alpha:]][_[:alnum:]]*)\\s*                      # callable name\n(?<type_args>\\s*<([^<>]|\\g<type_args>)+>\\s*)?\\s*    # type arguments\n(?=\\()                                              # open parentheses of argument list",
+			"begin": "(?x)\n(?:(\\:\\:)\\s*)?                                        # preceding member access\n([_[:alpha:]][_[:alnum:]]*)\\s*                      # callable name\n(?<type_args>\\s*<([^<>]|\\g<type_args>)+>\\s*)?\\s*    # type arguments\n(?=\\()                                              # open parentheses of argument list",
 			"beginCaptures": {
 				"1": {
 					"name": "punctuation.accessor.qsharp"
