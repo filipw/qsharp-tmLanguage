@@ -3,6 +3,7 @@ scopeName: source.qsharp
 fileTypes: [qs]
 patterns:
 - include: '#comments'
+- include: '#namespace-declaration'
 - include: '#keywords'
 - include: '#library'
 - include: '#operations'
@@ -44,7 +45,7 @@ repository:
   operations:
     patterns:
       - name: keyword.other.qsharp
-        match: \b(namespace|open|as|internal|body|(a|A)djoint|(c|C)ontrolled|self|auto|distribute|invert|intrinsic)\b
+        match: \b(open|as|internal|body|(a|A)djoint|(c|C)ontrolled|self|auto|distribute|invert|intrinsic)\b
 
   types:
     patterns:
@@ -66,10 +67,37 @@ repository:
           - name: constant.character.escape.qsharp
             match: \\.
 
+  namespace-declaration:
+    begin: \b(namespace)\s+
+    beginCaptures:
+      '1': { name: keyword.other.namespace.qsharp }
+    end: (?<=\})
+    patterns:
+    - name: entity.name.type.namespace.qsharp
+      match: '[_[:alpha:]][_[:alnum:]]*'
+    - include: '#punctuation-accessor'
+    - begin: \{
+      beginCaptures:
+        '0': { name: punctuation.curlybrace.open.qsharp }
+      end: \}
+      endCaptures:
+        '0': { name: punctuation.curlybrace.close.qsharp }
+      patterns:
+        - include: '#comments'
+        - include: '#keywords'
+        - include: '#library'
+        - include: '#operations'
+        - include: '#types'
+        - include: '#literals'
+        - include: '#strings'
+        - include: '#callable-invocation'
+        - include: '#callable-declaration'
+        - include: '#udt-declaration'
+
   callable-invocation: 
     begin: |-
       (?x)
-      (?:(\:\:)\s*)?                                        # preceding member access
+      (?:(\:\:)\s*)?                                      # preceding member access
       ([_[:alpha:]][_[:alnum:]]*)\s*                      # callable name
       (?<type_args>\s*<([^<>]|\g<type_args>)+>\s*)?\s*    # type arguments
       (?=\()                                              # open parentheses of argument list
@@ -241,3 +269,7 @@ repository:
     patterns:
     - name: constant.language.pauli.qsharp
       match: \b(Pauli(I|X|Y|Z))\b
+  
+  punctuation-accessor:
+    name: punctuation.accessor.qsharp
+    match: \.

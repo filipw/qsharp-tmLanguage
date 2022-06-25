@@ -18,6 +18,10 @@
       </dict>
       <dict>
         <key>include</key>
+        <string>#namespace-declaration</string>
+      </dict>
+      <dict>
+        <key>include</key>
         <string>#keywords</string>
       </dict>
       <dict>
@@ -128,7 +132,7 @@
             <key>name</key>
             <string>keyword.other.qsharp</string>
             <key>match</key>
-            <string>\b(namespace|open|as|internal|body|(a|A)djoint|(c|C)ontrolled|self|auto|distribute|invert|intrinsic)\b</string>
+            <string>\b(open|as|internal|body|(a|A)djoint|(c|C)ontrolled|self|auto|distribute|invert|intrinsic)\b</string>
           </dict>
         </array>
       </dict>
@@ -183,11 +187,104 @@
           </dict>
         </array>
       </dict>
+      <key>namespace-declaration</key>
+      <dict>
+        <key>begin</key>
+        <string>\b(namespace)\s+</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>1</key>
+          <dict>
+            <key>name</key>
+            <string>keyword.other.namespace.qsharp</string>
+          </dict>
+        </dict>
+        <key>end</key>
+        <string>(?&lt;=\})</string>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>name</key>
+            <string>entity.name.type.namespace.qsharp</string>
+            <key>match</key>
+            <string>[_[:alpha:]][_[:alnum:]]*</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#punctuation-accessor</string>
+          </dict>
+          <dict>
+            <key>begin</key>
+            <string>\{</string>
+            <key>beginCaptures</key>
+            <dict>
+              <key>0</key>
+              <dict>
+                <key>name</key>
+                <string>punctuation.curlybrace.open.qsharp</string>
+              </dict>
+            </dict>
+            <key>end</key>
+            <string>\}</string>
+            <key>endCaptures</key>
+            <dict>
+              <key>0</key>
+              <dict>
+                <key>name</key>
+                <string>punctuation.curlybrace.close.qsharp</string>
+              </dict>
+            </dict>
+            <key>patterns</key>
+            <array>
+              <dict>
+                <key>include</key>
+                <string>#comments</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#keywords</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#library</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#operations</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#types</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#literals</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#strings</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#callable-invocation</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#callable-declaration</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#udt-declaration</string>
+              </dict>
+            </array>
+          </dict>
+        </array>
+      </dict>
       <key>callable-invocation</key>
       <dict>
         <key>begin</key>
         <string>(?x)
-(?:(\:\:)\s*)?                                        # preceding member access
+(?:(\:\:)\s*)?                                      # preceding member access
 ([_[:alpha:]][_[:alnum:]]*)\s*                      # callable name
 (?&lt;type_args&gt;\s*&lt;([^&lt;&gt;]|\g&lt;type_args&gt;)+&gt;\s*)?\s*    # type arguments
 (?=\()                                              # open parentheses of argument list</string>
@@ -628,6 +725,13 @@
             <string>\b(Pauli(I|X|Y|Z))\b</string>
           </dict>
         </array>
+      </dict>
+      <key>punctuation-accessor</key>
+      <dict>
+        <key>name</key>
+        <string>punctuation.accessor.qsharp</string>
+        <key>match</key>
+        <string>\.</string>
       </dict>
     </dict>
   </dict>
