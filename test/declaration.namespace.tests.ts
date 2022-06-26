@@ -56,8 +56,9 @@ describe("Namespace declarations", () => {
             createToken("    ", "source.qsharp"),
             createToken("open", "keyword.other.qsharp"),
             createToken(" Microsoft.Quantum.Arithmetic; ", "source.qsharp"),
-            createToken("    ", "source.qsharp"),
-            createToken("// ...", "comment.line.double-slash"),
+            createToken("    ", "punctuation.whitespace.comment.leading.qsharp"),
+            createToken("//", "punctuation.definition.comment.qsharp"),
+            createToken(" ...", "comment.line.double-slash.qsharp"),
             createToken("}", "punctuation.curlybrace.close.qsharp"),
         ]);
     });

@@ -22,11 +22,22 @@ repository:
       - include: '#pauli-literal'
 
   comments:
-    patterns: 
-      - name: comment.line.double-slash
-        match: \/\/.*$
-      - name: comment.documentation
-        match: \/\/\/.*$
+    patterns:
+    - begin: (^\s+)?(?=//)
+      beginCaptures:
+        '1': { name: punctuation.whitespace.comment.leading.qsharp }
+      end: (?=$)
+      patterns:
+      - name: comment.block.documentation.qsharp
+        begin: (?<!/)///(?!/)
+        beginCaptures:
+          '0': { name: punctuation.definition.comment.qsharp }
+        end: (?=$)
+      - name: comment.line.double-slash.qsharp
+        begin: (?<!/)//(?:(?!/))
+        beginCaptures:
+          '0': { name: punctuation.definition.comment.qsharp }
+        end: (?=$)
 
   keywords:
     patterns:

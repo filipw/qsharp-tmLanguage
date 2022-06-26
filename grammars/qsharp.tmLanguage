@@ -82,16 +82,53 @@
         <key>patterns</key>
         <array>
           <dict>
-            <key>name</key>
-            <string>comment.line.double-slash</string>
-            <key>match</key>
-            <string>\/\/.*$</string>
-          </dict>
-          <dict>
-            <key>name</key>
-            <string>comment.documentation</string>
-            <key>match</key>
-            <string>\/\/\/.*$</string>
+            <key>begin</key>
+            <string>(^\s+)?(?=//)</string>
+            <key>beginCaptures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>punctuation.whitespace.comment.leading.qsharp</string>
+              </dict>
+            </dict>
+            <key>end</key>
+            <string>(?=$)</string>
+            <key>patterns</key>
+            <array>
+              <dict>
+                <key>name</key>
+                <string>comment.block.documentation.qsharp</string>
+                <key>begin</key>
+                <string>(?&lt;!/)///(?!/)</string>
+                <key>beginCaptures</key>
+                <dict>
+                  <key>0</key>
+                  <dict>
+                    <key>name</key>
+                    <string>punctuation.definition.comment.qsharp</string>
+                  </dict>
+                </dict>
+                <key>end</key>
+                <string>(?=$)</string>
+              </dict>
+              <dict>
+                <key>name</key>
+                <string>comment.line.double-slash.qsharp</string>
+                <key>begin</key>
+                <string>(?&lt;!/)//(?:(?!/))</string>
+                <key>beginCaptures</key>
+                <dict>
+                  <key>0</key>
+                  <dict>
+                    <key>name</key>
+                    <string>punctuation.definition.comment.qsharp</string>
+                  </dict>
+                </dict>
+                <key>end</key>
+                <string>(?=$)</string>
+              </dict>
+            </array>
           </dict>
         </array>
       </dict>
