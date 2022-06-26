@@ -17,4 +17,13 @@ describe("Comments", () => {
             createToken("// multi-line comment", "comment.line.double-slash")
         ]);
     });
+
+    it("Doc comment", async () => {
+        const tokens = await tokenize(`/// # Summary
+/// Term data in the optimized block-encoding algorithm.`);
+        tokens.should.deep.equal([
+            createToken("/// # Summary", "comment.line.double-slash"),
+            createToken("/// Term data in the optimized block-encoding algorithm.", "comment.line.double-slash")
+        ]);
+    });
 });
