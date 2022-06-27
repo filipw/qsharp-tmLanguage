@@ -786,7 +786,7 @@
               <key>1</key>
               <dict>
                 <key>name</key>
-                <string>keyword.other.using.qsharp</string>
+                <string>keyword.other.open.qsharp</string>
               </dict>
             </dict>
             <key>end</key>

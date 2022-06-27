@@ -39,7 +39,7 @@ describe("Namespace declarations", () => {
 
     it("With no-op code", async () => {
         const tokens = await tokenize(`namespace Microsoft.Quantum.Samples {
-    open Microsoft.Quantum.Arithmetic; 
+    open Microsoft.Quantum.Arithmetic;
     // ...
 }
         `);
@@ -54,8 +54,14 @@ describe("Namespace declarations", () => {
             createToken(" ", "source.qsharp"),
             createToken("{", "punctuation.curlybrace.open.qsharp"),
             createToken("    ", "source.qsharp"),
-            createToken("open", "keyword.other.qsharp"),
-            createToken(" Microsoft.Quantum.Arithmetic; ", "source.qsharp"),
+            createToken("open", "keyword.other.open.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("Microsoft", "entity.name.type.namespace.qsharp"),
+            createToken(".", "punctuation.accessor.qsharp"),
+            createToken("Quantum", "entity.name.type.namespace.qsharp"),
+            createToken(".", "punctuation.accessor.qsharp"),
+            createToken("Arithmetic", "entity.name.type.namespace.qsharp"),
+            createToken(";", "source.qsharp"),
             createToken("    ", "punctuation.whitespace.comment.leading.qsharp"),
             createToken("//", "punctuation.definition.comment.qsharp"),
             createToken(" ...", "comment.line.double-slash.qsharp"),

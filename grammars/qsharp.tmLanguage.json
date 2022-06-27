@@ -511,7 +511,7 @@
 					"begin": "\\b(open)\\s*",
 					"beginCaptures": {
 						"1": {
-							"name": "keyword.other.using.qsharp"
+							"name": "keyword.other.open.qsharp"
 						}
 					},
 					"end": "(?=;)",
