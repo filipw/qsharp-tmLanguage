@@ -50,6 +50,9 @@
 				},
 				{
 					"include": "#pauli-literal"
+				},
+				{
+					"include": "#numeric-literal"
 				}
 			]
 		},
@@ -402,6 +405,9 @@
 			"patterns": [
 				{
 					"include": "#punctuation-comma"
+				},
+				{
+					"include": "#literals"
 				}
 			]
 		},
@@ -538,6 +544,10 @@
 					]
 				}
 			]
+		},
+		"numeric-literal": {
+			"name": "constant.numeric.decimal.qsharp",
+			"match": "(?<!\\w)\\.?\\d(?:[0-9a-zA-Z_\\.])*"
 		}
 	}
 }

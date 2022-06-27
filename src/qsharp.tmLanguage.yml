@@ -20,6 +20,7 @@ repository:
       - include: '#boolean-literal'
       - include: '#result-literal'
       - include: '#pauli-literal'
+      - include: '#numeric-literal'
 
   comments:
     patterns:
@@ -233,6 +234,7 @@ repository:
         name: punctuation.squarebracket.close.qsharp
     patterns:
     - include: '#punctuation-comma'
+    - include: '#literals'
 
   udt-declaration:
     begin: (?=\bnewtype\b)
@@ -310,3 +312,7 @@ repository:
       - name: entity.name.type.namespace.qsharp
         match: '[_[:alpha:]][_[:alnum:]]*'
       - include: "#punctuation-accessor"
+
+  numeric-literal:
+    name: constant.numeric.decimal.qsharp
+    match: (?<!\w)\.?\d(?:[0-9a-zA-Z_\.])*

@@ -75,6 +75,10 @@
             <key>include</key>
             <string>#pauli-literal</string>
           </dict>
+          <dict>
+            <key>include</key>
+            <string>#numeric-literal</string>
+          </dict>
         </array>
       </dict>
       <key>comments</key>
@@ -620,6 +624,10 @@
             <key>include</key>
             <string>#punctuation-comma</string>
           </dict>
+          <dict>
+            <key>include</key>
+            <string>#literals</string>
+          </dict>
         </array>
       </dict>
       <key>udt-declaration</key>
@@ -825,6 +833,13 @@
             </array>
           </dict>
         </array>
+      </dict>
+      <key>numeric-literal</key>
+      <dict>
+        <key>name</key>
+        <string>constant.numeric.decimal.qsharp</string>
+        <key>match</key>
+        <string>(?&lt;!\w)\.?\d(?:[0-9a-zA-Z_\.])*</string>
       </dict>
     </dict>
   </dict>
