@@ -25,18 +25,21 @@ repository:
     patterns:
     - begin: (^\s+)?(?=//)
       beginCaptures:
-        '1': { name: punctuation.whitespace.comment.leading.qsharp }
+        '1':
+         name: punctuation.whitespace.comment.leading.qsharp
       end: (?=$)
       patterns:
       - name: comment.block.documentation.qsharp
         begin: (?<!/)///(?!/)
         beginCaptures:
-          '0': { name: punctuation.definition.comment.qsharp }
+          '0':
+            name: punctuation.definition.comment.qsharp
         end: (?=$)
       - name: comment.line.double-slash.qsharp
         begin: (?<!/)//(?:(?!/))
         beginCaptures:
-          '0': { name: punctuation.definition.comment.qsharp }
+          '0':
+            name: punctuation.definition.comment.qsharp
         end: (?=$)
 
   keywords:
@@ -81,7 +84,8 @@ repository:
   namespace-declaration:
     begin: \b(namespace)\s+
     beginCaptures:
-      '1': { name: keyword.other.namespace.qsharp }
+      '1':
+        name: keyword.other.namespace.qsharp
     end: (?<=\})
     patterns:
     - name: entity.name.type.namespace.qsharp
@@ -89,10 +93,12 @@ repository:
     - include: '#punctuation-accessor'
     - begin: \{
       beginCaptures:
-        '0': { name: punctuation.curlybrace.open.qsharp }
+        '0':
+          name: punctuation.curlybrace.open.qsharp
       end: \}
       endCaptures:
-        '0': { name: punctuation.curlybrace.close.qsharp }
+        '0':
+          name: punctuation.curlybrace.close.qsharp
       patterns:
         - include: '#comments'
         - include: '#keywords'
