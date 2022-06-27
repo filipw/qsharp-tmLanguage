@@ -169,7 +169,7 @@
             <key>name</key>
             <string>keyword.other.qsharp</string>
             <key>match</key>
-            <string>\b(open|as|internal|body|(a|A)djoint|(c|C)ontrolled|self|auto|distribute|invert|intrinsic)\b</string>
+            <string>\b(as|internal|body|(a|A)djoint|(c|C)ontrolled|self|auto|distribute|invert|intrinsic)\b</string>
           </dict>
         </array>
       </dict>
@@ -312,6 +312,10 @@
               <dict>
                 <key>include</key>
                 <string>#udt-declaration</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#open-directive</string>
               </dict>
             </array>
           </dict>
@@ -769,6 +773,58 @@
         <string>punctuation.accessor.qsharp</string>
         <key>match</key>
         <string>\.</string>
+      </dict>
+      <key>open-directive</key>
+      <dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>begin</key>
+            <string>\b(open)\s*</string>
+            <key>beginCaptures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>keyword.other.using.qsharp</string>
+              </dict>
+            </dict>
+            <key>end</key>
+            <string>(?=;)</string>
+            <key>patterns</key>
+            <array>
+              <dict>
+                <key>begin</key>
+                <string>\b(as)\s+(?&lt;alias&gt;[_[:alpha:]][_[:alnum:]]*)</string>
+                <key>beginCaptures</key>
+                <dict>
+                  <key>1</key>
+                  <dict>
+                    <key>name</key>
+                    <string>keyword.other.alias.qsharp</string>
+                  </dict>
+                  <key>2</key>
+                  <dict>
+                    <key>name</key>
+                    <string>entity.name.type.alias.qsharp</string>
+                  </dict>
+                </dict>
+                <key>end</key>
+                <string>(?=;)</string>
+              </dict>
+              <dict>
+                <key>name</key>
+                <string>entity.name.type.namespace.qsharp</string>
+                <key>match</key>
+                <string>[_[:alpha:]][_[:alnum:]]*</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#punctuation-accessor</string>
+              </dict>
+            </array>
+          </dict>
+        </array>
       </dict>
     </dict>
   </dict>

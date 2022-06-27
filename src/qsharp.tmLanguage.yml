@@ -59,7 +59,7 @@ repository:
   operations:
     patterns:
       - name: keyword.other.qsharp
-        match: \b(open|as|internal|body|(a|A)djoint|(c|C)ontrolled|self|auto|distribute|invert|intrinsic)\b
+        match: \b(as|internal|body|(a|A)djoint|(c|C)ontrolled|self|auto|distribute|invert|intrinsic)\b
 
   types:
     patterns:
@@ -110,6 +110,7 @@ repository:
         - include: '#callable-invocation'
         - include: '#callable-declaration'
         - include: '#udt-declaration'
+        - include: '#open-directive'
 
   callable-invocation: 
     begin: |-
@@ -290,3 +291,22 @@ repository:
   punctuation-accessor:
     name: punctuation.accessor.qsharp
     match: \.
+
+  open-directive:
+    patterns:
+    - begin: \b(open)\s*
+      beginCaptures:
+        '1': 
+          name: keyword.other.using.qsharp
+      end: (?=;)
+      patterns:
+      - begin: \b(as)\s+(?<alias>[_[:alpha:]][_[:alnum:]]*)
+        beginCaptures: 
+          '1': 
+            name: keyword.other.alias.qsharp
+          '2':
+            name: entity.name.type.alias.qsharp
+        end: (?=;)
+      - name: entity.name.type.namespace.qsharp
+        match: '[_[:alpha:]][_[:alnum:]]*'
+      - include: "#punctuation-accessor"
