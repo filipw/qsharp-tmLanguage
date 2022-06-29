@@ -24,12 +24,26 @@ describe("Callable invocation", () => {
             createToken("(", "punctuation.parenthesis.open.qsharp"),
             createToken("n", "variable.other.readwrite.qsharp"),
             createToken(",", "punctuation.separator.comma.qsharp"),
-            createToken(" 0", "source.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("0", "constant.numeric.decimal.qsharp"),
             createToken(",", "punctuation.separator.comma.qsharp"),
             createToken(" ", "source.qsharp"),
             createToken("\"", "string.quoted.double.qsharp"),
             createToken("syndrome failure", "string.quoted.double.qsharp"),
             createToken("\"", "string.quoted.double.qsharp"),
+            createToken(")", "punctuation.parenthesis.close.qsharp"),
+        ]);
+    });
+
+    it("Array with index argument", async () => {
+        const tokens = await tokenize(`CustomCNOT(pauliBases[0])`);
+        tokens.should.deep.equal([
+            createToken("CustomCNOT", "entity.name.function.qsharp"),
+            createToken("(", "punctuation.parenthesis.open.qsharp"),
+            createToken("pauliBases", "variable.other.readwrite.qsharp"),
+            createToken("[", "punctuation.squarebracket.open.qsharp"),
+            createToken("0", "constant.numeric.decimal.qsharp"),
+            createToken("]", "punctuation.squarebracket.close.qsharp"),
             createToken(")", "punctuation.parenthesis.close.qsharp"),
         ]);
     });
@@ -44,7 +58,8 @@ describe("Callable invocation", () => {
             createToken("angle", "variable.other.readwrite.qsharp"),
             createToken(")", "punctuation.parenthesis.close.qsharp"),
             createToken(",", "punctuation.separator.comma.qsharp"),
-            createToken(" 4.0", "source.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("4.0", "constant.numeric.decimal.qsharp"),
             createToken(")", "punctuation.parenthesis.close.qsharp"),
         ]);
     });
@@ -65,5 +80,26 @@ describe("Callable invocation", () => {
             createToken(")", "punctuation.parenthesis.close.qsharp"),
         ]);
     });
-    
+
+    it("Unwrapped argument", async () => {
+        const tokens = await tokenize(`Length(xs!)`);
+        tokens.should.deep.equal([
+            createToken("Length", "entity.name.function.qsharp"),
+            createToken("(", "punctuation.parenthesis.open.qsharp"),
+            createToken("xs", "variable.other.readwrite.qsharp"),
+            createToken("!", "keyword.operator.unwrap.qsharp"),
+            createToken(")", "punctuation.parenthesis.close.qsharp"),
+        ]);
+    });
+
+    it("Double unwrapped argument", async () => {
+        const tokens = await tokenize(`Length(xs!!)`);
+        tokens.should.deep.equal([
+            createToken("Length", "entity.name.function.qsharp"),
+            createToken("(", "punctuation.parenthesis.open.qsharp"),
+            createToken("xs", "variable.other.readwrite.qsharp"),
+            createToken("!!", "keyword.operator.unwrap.qsharp"),
+            createToken(")", "punctuation.parenthesis.close.qsharp"),
+        ]);
+    });
 });

@@ -341,8 +341,15 @@
 			"match": ","
 		},
 		"identifier": {
-			"name": "variable.other.readwrite.qsharp",
-			"match": "[_[:alpha:]][_[:alnum:]]*"
+			"match": "([_[:alpha:]][_[:alnum:]]*)(\\!*)?",
+			"captures": {
+				"1": {
+					"name": "variable.other.readwrite.qsharp"
+				},
+				"2": {
+					"name": "keyword.operator.unwrap.qsharp"
+				}
+			}
 		},
 		"argument": {
 			"patterns": [

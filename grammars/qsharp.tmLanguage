@@ -526,10 +526,21 @@
       </dict>
       <key>identifier</key>
       <dict>
-        <key>name</key>
-        <string>variable.other.readwrite.qsharp</string>
         <key>match</key>
-        <string>[_[:alpha:]][_[:alnum:]]*</string>
+        <string>([_[:alpha:]][_[:alnum:]]*)(\!*)?</string>
+        <key>captures</key>
+        <dict>
+          <key>1</key>
+          <dict>
+            <key>name</key>
+            <string>variable.other.readwrite.qsharp</string>
+          </dict>
+          <key>2</key>
+          <dict>
+            <key>name</key>
+            <string>keyword.operator.unwrap.qsharp</string>
+          </dict>
+        </dict>
       </dict>
       <key>argument</key>
       <dict>
