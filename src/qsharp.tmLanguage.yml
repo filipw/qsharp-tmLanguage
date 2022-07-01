@@ -113,6 +113,7 @@ repository:
         - include: '#callable-declaration'
         - include: '#udt-declaration'
         - include: '#open-directive'
+        - include: '#array-creation-expression'
 
   callable-invocation: 
     begin: |-

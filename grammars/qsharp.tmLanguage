@@ -325,6 +325,10 @@
                 <key>include</key>
                 <string>#open-directive</string>
               </dict>
+              <dict>
+                <key>include</key>
+                <string>#array-creation-expression</string>
+              </dict>
             </array>
           </dict>
         </array>

@@ -215,6 +215,9 @@
 						},
 						{
 							"include": "#open-directive"
+						},
+						{
+							"include": "#array-creation-expression"
 						}
 					]
 				}
