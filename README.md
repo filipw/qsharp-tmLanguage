@@ -2,6 +2,8 @@
 
 This repository contains the TextMate grammar for Q#. The grammar provides tokenization support for Q# language files, and can be used for syntax highlighting of Q# code in any editor.
 
+[![CoC](https://img.shields.io/badge/code%20of%20conduct-contributor%20covenant-yellow)](CODE_OF_CONDUCT.md)
+
 ## Build and Development
 
 To contribute, clone the repo and run (requires Node.js and `npm` to be installed on the dev machine)
