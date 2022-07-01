@@ -56,6 +56,10 @@
         <key>include</key>
         <string>#udt-declaration</string>
       </dict>
+      <dict>
+        <key>include</key>
+        <string>#array-creation-expression</string>
+      </dict>
     </array>
     <key>repository</key>
     <dict>
@@ -526,21 +530,26 @@
       </dict>
       <key>identifier</key>
       <dict>
-        <key>match</key>
-        <string>([_[:alpha:]][_[:alnum:]]*)(\!*)?</string>
-        <key>captures</key>
-        <dict>
-          <key>1</key>
+        <key>patterns</key>
+        <array>
           <dict>
-            <key>name</key>
-            <string>variable.other.readwrite.qsharp</string>
+            <key>match</key>
+            <string>([_[:alpha:]][_[:alnum:]]*)(\!*)?</string>
+            <key>captures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>variable.other.readwrite.qsharp</string>
+              </dict>
+              <key>2</key>
+              <dict>
+                <key>name</key>
+                <string>keyword.operator.unwrap.qsharp</string>
+              </dict>
+            </dict>
           </dict>
-          <key>2</key>
-          <dict>
-            <key>name</key>
-            <string>keyword.operator.unwrap.qsharp</string>
-          </dict>
-        </dict>
+        </array>
       </dict>
       <key>argument</key>
       <dict>
@@ -556,7 +565,11 @@
           </dict>
           <dict>
             <key>include</key>
-            <string>#identifier</string>
+            <string>#types</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#library</string>
           </dict>
           <dict>
             <key>include</key>
@@ -564,11 +577,7 @@
           </dict>
           <dict>
             <key>include</key>
-            <string>#types</string>
-          </dict>
-          <dict>
-            <key>include</key>
-            <string>#library</string>
+            <string>#identifier</string>
           </dict>
         </array>
       </dict>
@@ -851,6 +860,54 @@
         <string>constant.numeric.decimal.qsharp</string>
         <key>match</key>
         <string>(?&lt;!\w)\.?\d(?:[0-9a-zA-Z_\.])*</string>
+      </dict>
+      <key>array-creation-expression</key>
+      <dict>
+        <key>begin</key>
+        <string>(?&lt;!\w)\[</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>0</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.squarebracket.open.qsharp</string>
+          </dict>
+        </dict>
+        <key>end</key>
+        <string>\]</string>
+        <key>endCaptures</key>
+        <dict>
+          <key>0</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.squarebracket.close.qsharp</string>
+          </dict>
+        </dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>begin</key>
+            <string>\b(size)\s*(?=\=)</string>
+            <key>end</key>
+            <string>(?=\])</string>
+            <key>beginCaptures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>keyword.other.size.qsharp</string>
+              </dict>
+            </dict>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#argument</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#punctuation-comma</string>
+          </dict>
+        </array>
       </dict>
     </dict>
   </dict>

@@ -37,6 +37,9 @@
 		},
 		{
 			"include": "#udt-declaration"
+		},
+		{
+			"include": "#array-creation-expression"
 		}
 	],
 	"repository": {
@@ -341,15 +344,19 @@
 			"match": ","
 		},
 		"identifier": {
-			"match": "([_[:alpha:]][_[:alnum:]]*)(\\!*)?",
-			"captures": {
-				"1": {
-					"name": "variable.other.readwrite.qsharp"
-				},
-				"2": {
-					"name": "keyword.operator.unwrap.qsharp"
+			"patterns": [
+				{
+					"match": "([_[:alpha:]][_[:alnum:]]*)(\\!*)?",
+					"captures": {
+						"1": {
+							"name": "variable.other.readwrite.qsharp"
+						},
+						"2": {
+							"name": "keyword.operator.unwrap.qsharp"
+						}
+					}
 				}
-			}
+			]
 		},
 		"argument": {
 			"patterns": [
@@ -360,16 +367,16 @@
 					"include": "#strings"
 				},
 				{
-					"include": "#identifier"
+					"include": "#types"
+				},
+				{
+					"include": "#library"
 				},
 				{
 					"include": "#literals"
 				},
 				{
-					"include": "#types"
-				},
-				{
-					"include": "#library"
+					"include": "#identifier"
 				}
 			]
 		},
@@ -555,6 +562,37 @@
 		"numeric-literal": {
 			"name": "constant.numeric.decimal.qsharp",
 			"match": "(?<!\\w)\\.?\\d(?:[0-9a-zA-Z_\\.])*"
+		},
+		"array-creation-expression": {
+			"begin": "(?<!\\w)\\[",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.squarebracket.open.qsharp"
+				}
+			},
+			"end": "\\]",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.squarebracket.close.qsharp"
+				}
+			},
+			"patterns": [
+				{
+					"begin": "\\b(size)\\s*(?=\\=)",
+					"end": "(?=\\])",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.other.size.qsharp"
+						}
+					}
+				},
+				{
+					"include": "#argument"
+				},
+				{
+					"include": "#punctuation-comma"
+				}
+			]
 		}
 	}
 }

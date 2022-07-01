@@ -44,12 +44,16 @@ describe("Literals", () => {
         const tokens = await tokenize("let pauliGroup = [PauliX, PauliY, PauliZ];");
         tokens.should.deep.equal([
             createToken("let", "keyword.control.qsharp"),
-            createToken(" pauliGroup = [", "source.qsharp"),
+            createToken(" pauliGroup = ", "source.qsharp"),
+            createToken("[", "punctuation.squarebracket.open.qsharp"),
             createToken("PauliX", "constant.language.pauli.qsharp"),
-            createToken(", ", "source.qsharp"),
+            createToken(",", "punctuation.separator.comma.qsharp"),
+            createToken(" ", "source.qsharp"),
             createToken("PauliY", "constant.language.pauli.qsharp"),
-            createToken(", ", "source.qsharp"),
-            createToken("PauliZ", "constant.language.pauli.qsharp")
+            createToken(",", "punctuation.separator.comma.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("PauliZ", "constant.language.pauli.qsharp"),
+            createToken("]", "punctuation.squarebracket.close.qsharp"),
         ]);
     });
 });
