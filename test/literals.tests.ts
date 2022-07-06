@@ -41,13 +41,9 @@ describe("Literals", () => {
     });
 
     it("Paulis in an array", async () => {
-        const tokens = await tokenize("let pauliGroup = [PauliX, PauliY, PauliZ];");
+        const tokens = await tokenize("return [PauliX, PauliY, PauliZ];");
         tokens.should.deep.equal([
-            createToken("let", "keyword.other.let.qsharp"),
-            createToken(" ", "source.qsharp"),
-            createToken("pauliGroup", "entity.name.variable.local.qsharp"),
-            createToken(" ", "source.qsharp"),
-            createToken("=", "keyword.operator.assignment.qsharp"),
+            createToken("return", "keyword.control.qsharp"),
             createToken(" ", "source.qsharp"),
             createToken("[", "punctuation.squarebracket.open.qsharp"),
             createToken("PauliX", "constant.language.pauli.qsharp"),
