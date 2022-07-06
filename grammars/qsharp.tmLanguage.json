@@ -40,6 +40,9 @@
 		},
 		{
 			"include": "#array-creation-expression"
+		},
+		{
+			"include": "#local-declaration"
 		}
 	],
 	"repository": {
@@ -98,7 +101,7 @@
 			"patterns": [
 				{
 					"name": "keyword.control.qsharp",
-					"match": "\\b(use|using|borrow|borrowing|mutable|let|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\\b"
+					"match": "\\b(use|using|borrow|borrowing|mutable|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\\b"
 				},
 				{
 					"name": "keyword.other.qsharp",
@@ -218,6 +221,9 @@
 						},
 						{
 							"include": "#array-creation-expression"
+						},
+						{
+							"include": "#local-declaration"
 						}
 					]
 				}
@@ -594,6 +600,55 @@
 				},
 				{
 					"include": "#punctuation-comma"
+				}
+			]
+		},
+		"local-declaration": {
+			"begin": "(?x)\n(?:\\b(let)\\b\\s*)\n([_[:alpha:]][_[:alnum:]]*)\\b\\s*\n(?=;|=|\\))",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.other.let.qsharp"
+				},
+				"2": {
+					"name": "entity.name.variable.local.qsharp"
+				}
+			},
+			"end": "(?=;|\\))",
+			"patterns": [
+				{
+					"include": "#variable-initializer"
+				}
+			]
+		},
+		"variable-initializer": {
+			"begin": "(?<!=|!)(=)(?!=|>)",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.operator.assignment.qsharp"
+				}
+			},
+			"end": "(?=[,\\)\\];}])",
+			"patterns": [
+				{
+					"include": "#callable-invocation"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#types"
+				},
+				{
+					"include": "#library"
+				},
+				{
+					"include": "#literals"
+				},
+				{
+					"include": "#identifier"
+				},
+				{
+					"include": "#array-creation-expression"
 				}
 			]
 		}

@@ -14,6 +14,7 @@ patterns:
 - include: '#callable-declaration'
 - include: '#udt-declaration'
 - include: '#array-creation-expression'
+- include: '#local-declaration'
 
 repository:
   literals:
@@ -47,7 +48,7 @@ repository:
   keywords:
     patterns:
       - name: keyword.control.qsharp
-        match: \b(use|using|borrow|borrowing|mutable|let|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b
+        match: \b(use|using|borrow|borrowing|mutable|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b
       - name: keyword.other.qsharp
         match: \b(new|not|and|or|w\/)\b
       - comment: C# reserved words which can't be used in Q#
@@ -114,6 +115,7 @@ repository:
         - include: '#udt-declaration'
         - include: '#open-directive'
         - include: '#array-creation-expression'
+        - include: '#local-declaration'
 
   callable-invocation: 
     begin: |-
@@ -341,3 +343,30 @@ repository:
           name: keyword.other.size.qsharp
     - include: '#argument'
     - include: '#punctuation-comma'
+
+  local-declaration:
+    begin: |-
+      (?x)
+      (?:\b(let)\b\s*)
+      ([_[:alpha:]][_[:alnum:]]*)\b\s*
+      (?=;|=|\))
+    beginCaptures:
+      '1': { name: keyword.other.let.qsharp }
+      '2': { name: entity.name.variable.local.qsharp }
+    end: (?=;|\))
+    patterns:
+    - include: '#variable-initializer'
+
+  variable-initializer:
+    begin: (?<!=|!)(=)(?!=|>)
+    beginCaptures:
+      '1': { name: keyword.operator.assignment.qsharp }
+    end: (?=[,\)\];}])
+    patterns:
+    - include: '#callable-invocation'
+    - include: '#strings'
+    - include: '#types'
+    - include: '#library'
+    - include: '#literals'
+    - include: '#identifier'
+    - include: '#array-creation-expression'

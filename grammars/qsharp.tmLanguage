@@ -60,6 +60,10 @@
         <key>include</key>
         <string>#array-creation-expression</string>
       </dict>
+      <dict>
+        <key>include</key>
+        <string>#local-declaration</string>
+      </dict>
     </array>
     <key>repository</key>
     <dict>
@@ -148,7 +152,7 @@
             <key>name</key>
             <string>keyword.control.qsharp</string>
             <key>match</key>
-            <string>\b(use|using|borrow|borrowing|mutable|let|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b</string>
+            <string>\b(use|using|borrow|borrowing|mutable|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b</string>
           </dict>
           <dict>
             <key>name</key>
@@ -328,6 +332,10 @@
               <dict>
                 <key>include</key>
                 <string>#array-creation-expression</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#local-declaration</string>
               </dict>
             </array>
           </dict>
@@ -910,6 +918,82 @@
           <dict>
             <key>include</key>
             <string>#punctuation-comma</string>
+          </dict>
+        </array>
+      </dict>
+      <key>local-declaration</key>
+      <dict>
+        <key>begin</key>
+        <string>(?x)
+(?:\b(let)\b\s*)
+([_[:alpha:]][_[:alnum:]]*)\b\s*
+(?=;|=|\))</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>1</key>
+          <dict>
+            <key>name</key>
+            <string>keyword.other.let.qsharp</string>
+          </dict>
+          <key>2</key>
+          <dict>
+            <key>name</key>
+            <string>entity.name.variable.local.qsharp</string>
+          </dict>
+        </dict>
+        <key>end</key>
+        <string>(?=;|\))</string>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>#variable-initializer</string>
+          </dict>
+        </array>
+      </dict>
+      <key>variable-initializer</key>
+      <dict>
+        <key>begin</key>
+        <string>(?&lt;!=|!)(=)(?!=|&gt;)</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>1</key>
+          <dict>
+            <key>name</key>
+            <string>keyword.operator.assignment.qsharp</string>
+          </dict>
+        </dict>
+        <key>end</key>
+        <string>(?=[,\)\];}])</string>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>#callable-invocation</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#strings</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#types</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#library</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#literals</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#identifier</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#array-creation-expression</string>
           </dict>
         </array>
       </dict>
