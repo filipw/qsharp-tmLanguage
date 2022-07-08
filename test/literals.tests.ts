@@ -40,6 +40,17 @@ describe("Literals", () => {
         ]);
     });
 
+    it("String", async () => {
+        const tokens = await tokenize(`return "foo";`);
+        tokens.should.deep.equal([
+            createToken("return", "keyword.control.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("\"", "string.quoted.double.qsharp"),
+            createToken("foo", "string.quoted.double.qsharp"),
+            createToken("\"", "string.quoted.double.qsharp"),
+        ]);
+    });
+
     it("Paulis in an array", async () => {
         const tokens = await tokenize("return [PauliX, PauliY, PauliZ];");
         tokens.should.deep.equal([
