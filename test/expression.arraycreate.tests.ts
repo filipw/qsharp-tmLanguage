@@ -5,8 +5,14 @@ describe("Expression: Array Creation", () => {
     before(() => { should(); });
 
     it("Numeric literals", async () => {
-        const tokens = await tokenize(`[1, 2, 3];`);
+        const tokens = await tokenize(`let a = [1, 2, 3];`);
         tokens.should.deep.equal([
+            createToken("let", "keyword.other.let.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("a", "entity.name.variable.local.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("=", "keyword.operator.assignment.qsharp"),
+            createToken(" ", "source.qsharp"),
             createToken("[", "punctuation.squarebracket.open.qsharp"),
             createToken("1", "constant.numeric.decimal.qsharp"),
             createToken(",", "punctuation.separator.comma.qsharp"),
@@ -20,8 +26,14 @@ describe("Expression: Array Creation", () => {
     });
 
     it("Identifiers", async () => {
-        const tokens = await tokenize(`[foo, bar, baz];`);
+        const tokens = await tokenize(`let a = [foo, bar, baz];`);
         tokens.should.deep.equal([
+            createToken("let", "keyword.other.let.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("a", "entity.name.variable.local.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("=", "keyword.operator.assignment.qsharp"),
+            createToken(" ", "source.qsharp"),
             createToken("[", "punctuation.squarebracket.open.qsharp"),
             createToken("foo", "variable.other.readwrite.qsharp"),
             createToken(",", "punctuation.separator.comma.qsharp"),
@@ -35,8 +47,14 @@ describe("Expression: Array Creation", () => {
     });
 
     it("Identifier named size with size", async () => {
-        const tokens = await tokenize(`[size, size = 3];`);
+        const tokens = await tokenize(`let a = [size, size = 3];`);
         tokens.should.deep.equal([
+            createToken("let", "keyword.other.let.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("a", "entity.name.variable.local.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("=", "keyword.operator.assignment.qsharp"),
+            createToken(" ", "source.qsharp"),
             createToken("[", "punctuation.squarebracket.open.qsharp"),
             createToken("size", "variable.other.readwrite.qsharp"),
             createToken(",", "punctuation.separator.comma.qsharp"),
