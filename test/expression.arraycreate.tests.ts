@@ -25,6 +25,24 @@ describe("Expression: Array Creation", () => {
         ]);
     });
 
+    it("Numeric literals", async () => {
+        const tokens = await tokenize(`let a = [true, false];`);
+        tokens.should.deep.equal([
+            createToken("let", "keyword.other.let.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("a", "entity.name.variable.local.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("=", "keyword.operator.assignment.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("[", "punctuation.squarebracket.open.qsharp"),
+            createToken("true", "constant.language.boolean.true.qsharp"),
+            createToken(",", "punctuation.separator.comma.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("false", "constant.language.boolean.false.qsharp"),
+            createToken("]", "punctuation.squarebracket.close.qsharp"),
+        ]);
+    });
+
     it("Identifiers", async () => {
         const tokens = await tokenize(`let a = [foo, bar, baz];`);
         tokens.should.deep.equal([
