@@ -6,6 +6,25 @@ describe("Open directive", () => {
 
     it("Basic", async () => {
         const tokens = await tokenize(`namespace A {
+    open Foo;
+}`);
+        tokens.should.deep.equal([
+            createToken("namespace", "keyword.other.namespace.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("A", "entity.name.type.namespace.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("{", "punctuation.curlybrace.open.qsharp"),
+            createToken("    ", "source.qsharp"),
+            createToken("open", "keyword.other.open.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("Foo", "entity.name.type.namespace.qsharp"),
+            createToken(";", "source.qsharp"),
+            createToken("}", "punctuation.curlybrace.close.qsharp"),
+        ]);
+    });
+
+    it("Nested", async () => {
+        const tokens = await tokenize(`namespace A {
     open Microsoft.Quantum.Arithmetic;
 }`);
         tokens.should.deep.equal([
