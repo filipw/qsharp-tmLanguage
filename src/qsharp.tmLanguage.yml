@@ -48,7 +48,7 @@ repository:
   keywords:
     patterns:
       - name: keyword.control.qsharp
-        match: \b(use|using|borrow|borrowing|mutable|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b
+        match: \b(use|using|borrow|borrowing|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b
       - name: keyword.other.qsharp
         match: \b(new|not|and|or|w\/)\b
       - comment: C# reserved words which can't be used in Q#
@@ -347,12 +347,13 @@ repository:
   local-declaration:
     begin: |-
       (?x)
-      (?:\b(let)\b\s*)
+      (?:\b(?:(let)|(mutable))\b\s*)
       ([_[:alpha:]][_[:alnum:]]*)\b\s*
       (?=;|=|\))
     beginCaptures:
       '1': { name: keyword.other.let.qsharp }
-      '2': { name: entity.name.variable.local.qsharp }
+      '2': { name: keyword.other.mutable.qsharp }
+      '3': { name: entity.name.variable.local.qsharp }
     end: (?=;|\))
     patterns:
     - include: '#variable-initializer'

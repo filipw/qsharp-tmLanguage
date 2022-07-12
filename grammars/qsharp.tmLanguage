@@ -152,7 +152,7 @@
             <key>name</key>
             <string>keyword.control.qsharp</string>
             <key>match</key>
-            <string>\b(use|using|borrow|borrowing|mutable|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b</string>
+            <string>\b(use|using|borrow|borrowing|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b</string>
           </dict>
           <dict>
             <key>name</key>
@@ -925,7 +925,7 @@
       <dict>
         <key>begin</key>
         <string>(?x)
-(?:\b(let)\b\s*)
+(?:\b(?:(let)|(mutable))\b\s*)
 ([_[:alpha:]][_[:alnum:]]*)\b\s*
 (?=;|=|\))</string>
         <key>beginCaptures</key>
@@ -936,6 +936,11 @@
             <string>keyword.other.let.qsharp</string>
           </dict>
           <key>2</key>
+          <dict>
+            <key>name</key>
+            <string>keyword.other.mutable.qsharp</string>
+          </dict>
+          <key>3</key>
           <dict>
             <key>name</key>
             <string>entity.name.variable.local.qsharp</string>

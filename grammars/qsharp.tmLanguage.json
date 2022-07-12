@@ -101,7 +101,7 @@
 			"patterns": [
 				{
 					"name": "keyword.control.qsharp",
-					"match": "\\b(use|using|borrow|borrowing|mutable|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\\b"
+					"match": "\\b(use|using|borrow|borrowing|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\\b"
 				},
 				{
 					"name": "keyword.other.qsharp",
@@ -604,12 +604,15 @@
 			]
 		},
 		"local-declaration": {
-			"begin": "(?x)\n(?:\\b(let)\\b\\s*)\n([_[:alpha:]][_[:alnum:]]*)\\b\\s*\n(?=;|=|\\))",
+			"begin": "(?x)\n(?:\\b(?:(let)|(mutable))\\b\\s*)\n([_[:alpha:]][_[:alnum:]]*)\\b\\s*\n(?=;|=|\\))",
 			"beginCaptures": {
 				"1": {
 					"name": "keyword.other.let.qsharp"
 				},
 				"2": {
+					"name": "keyword.other.mutable.qsharp"
+				},
+				"3": {
 					"name": "entity.name.variable.local.qsharp"
 				}
 			},
