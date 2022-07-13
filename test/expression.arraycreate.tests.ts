@@ -43,6 +43,29 @@ describe("Expression: Array Creation", () => {
         ]);
     });
 
+    it("From callable invocations", async () => {
+        const tokens = await tokenize(`let a = [AllocateQubit(), M(qubit)];`);
+        tokens.should.deep.equal([
+            createToken("let", "keyword.other.let.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("a", "entity.name.variable.local.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("=", "keyword.operator.assignment.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("[", "punctuation.squarebracket.open.qsharp"),
+            createToken("AllocateQubit", "entity.name.function.qsharp"),
+            createToken("(", "punctuation.parenthesis.open.qsharp"),
+            createToken(")", "punctuation.parenthesis.close.qsharp"),
+            createToken(",", "punctuation.separator.comma.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("M", "entity.name.function.qsharp"),
+            createToken("(", "punctuation.parenthesis.open.qsharp"),
+            createToken("qubit", "variable.other.readwrite.qsharp"),
+            createToken(")", "punctuation.parenthesis.close.qsharp"),
+            createToken("]", "punctuation.squarebracket.close.qsharp"),
+        ]);
+    });
+
     it("Identifiers", async () => {
         const tokens = await tokenize(`let a = [foo, bar, baz];`);
         tokens.should.deep.equal([
