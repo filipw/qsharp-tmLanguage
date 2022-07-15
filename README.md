@@ -22,8 +22,8 @@ The output are the grammar files located at:
 
 These two files are committed to source control to allow easy access to latest grammars, but they should not be edited by hand.
 
-The latest ones can be grabbed manually from [here](https://github.com/filipw/qsharp-tmLanguage/tree/main/grammars) and used directly in any editor supporting TextMate grammar.
+The latest ones can be grabbed manually from [here](https://github.com/qsharp-community/qsharp-tmLanguage/tree/main/grammars) and used directly in any editor supporting TextMate grammar.
 
 ## License
 
-[MIT License](https://github.com/filipw/qsharp-tmLanguage/blob/main/LICENSE)
+[MIT License](https://github.com/qsharp-community/qsharp-tmLanguage/blob/main/LICENSE)
