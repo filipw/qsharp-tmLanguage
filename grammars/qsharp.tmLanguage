@@ -158,7 +158,7 @@
             <key>name</key>
             <string>keyword.other.qsharp</string>
             <key>match</key>
-            <string>\b(new|not|and|or|w\/)\b</string>
+            <string>\b(new|w\/)\b</string>
           </dict>
           <dict>
             <key>comment</key>
@@ -336,6 +336,10 @@
               <dict>
                 <key>include</key>
                 <string>#local-declaration</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#expression-operators</string>
               </dict>
             </array>
           </dict>
@@ -591,6 +595,10 @@
             <key>include</key>
             <string>#identifier</string>
           </dict>
+          <dict>
+            <key>include</key>
+            <string>#expression-operators</string>
+          </dict>
         </array>
       </dict>
       <key>parameter</key>
@@ -625,6 +633,10 @@
           <dict>
             <key>include</key>
             <string>#library</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#expression-operators</string>
           </dict>
         </array>
       </dict>
@@ -974,6 +986,10 @@
         <array>
           <dict>
             <key>include</key>
+            <string>#expression-operators</string>
+          </dict>
+          <dict>
+            <key>include</key>
             <string>#callable-invocation</string>
           </dict>
           <dict>
@@ -999,6 +1015,18 @@
           <dict>
             <key>include</key>
             <string>#array-creation-expression</string>
+          </dict>
+        </array>
+      </dict>
+      <key>expression-operators</key>
+      <dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>name</key>
+            <string>keyword.operator.logical.qsharp</string>
+            <key>match</key>
+            <string>\b(not|and|or)\b</string>
           </dict>
         </array>
       </dict>

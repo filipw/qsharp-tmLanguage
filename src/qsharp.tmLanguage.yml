@@ -50,7 +50,7 @@ repository:
       - name: keyword.control.qsharp
         match: \b(use|using|borrow|borrowing|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b
       - name: keyword.other.qsharp
-        match: \b(new|not|and|or|w\/)\b
+        match: \b(new|w\/)\b
       - comment: C# reserved words which can't be used in Q#
         name: invalid.illegal.qsharp
         match: |-
@@ -116,6 +116,7 @@ repository:
         - include: '#open-directive'
         - include: '#array-creation-expression'
         - include: '#local-declaration'
+        - include: '#expression-operators'
 
   callable-invocation: 
     begin: |-
@@ -218,6 +219,7 @@ repository:
       - include: '#library'
       - include: '#literals'
       - include: '#identifier'
+      - include: '#expression-operators'
 
   parameter:
     begin: ([_[:alpha:]][_[:alnum:]]*)\s*(:)
@@ -231,6 +233,7 @@ repository:
       - include: '#literals'
       - include: '#types'
       - include: '#library'
+      - include: '#expression-operators'
 
   type-array-suffix:
     begin: \b\[
@@ -364,6 +367,7 @@ repository:
       '1': { name: keyword.operator.assignment.qsharp }
     end: (?=[,\)\];}])
     patterns:
+    - include: '#expression-operators'
     - include: '#callable-invocation'
     - include: '#strings'
     - include: '#types'
@@ -371,3 +375,8 @@ repository:
     - include: '#literals'
     - include: '#identifier'
     - include: '#array-creation-expression'
+
+  expression-operators:
+    patterns:
+    - name: keyword.operator.logical.qsharp
+      match: \b(not|and|or)\b

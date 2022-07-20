@@ -105,7 +105,7 @@
 				},
 				{
 					"name": "keyword.other.qsharp",
-					"match": "\\b(new|not|and|or|w\\/)\\b"
+					"match": "\\b(new|w\\/)\\b"
 				},
 				{
 					"comment": "C# reserved words which can't be used in Q#",
@@ -224,6 +224,9 @@
 						},
 						{
 							"include": "#local-declaration"
+						},
+						{
+							"include": "#expression-operators"
 						}
 					]
 				}
@@ -386,6 +389,9 @@
 				},
 				{
 					"include": "#identifier"
+				},
+				{
+					"include": "#expression-operators"
 				}
 			]
 		},
@@ -409,6 +415,9 @@
 				},
 				{
 					"include": "#library"
+				},
+				{
+					"include": "#expression-operators"
 				}
 			]
 		},
@@ -633,6 +642,9 @@
 			"end": "(?=[,\\)\\];}])",
 			"patterns": [
 				{
+					"include": "#expression-operators"
+				},
+				{
 					"include": "#callable-invocation"
 				},
 				{
@@ -652,6 +664,14 @@
 				},
 				{
 					"include": "#array-creation-expression"
+				}
+			]
+		},
+		"expression-operators": {
+			"patterns": [
+				{
+					"name": "keyword.operator.logical.qsharp",
+					"match": "\\b(not|and|or)\\b"
 				}
 			]
 		}
