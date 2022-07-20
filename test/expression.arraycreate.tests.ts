@@ -25,7 +25,7 @@ describe("Expression: Array Creation", () => {
         ]);
     });
 
-    it("Numeric literals", async () => {
+    it("Boolean literals", async () => {
         const tokens = await tokenize(`let a = [true, false];`);
         tokens.should.deep.equal([
             createToken("let", "keyword.other.let.qsharp"),
