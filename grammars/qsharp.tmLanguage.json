@@ -43,6 +43,9 @@
 		},
 		{
 			"include": "#local-declaration"
+		},
+		{
+			"include": "#quantum-declaration"
 		}
 	],
 	"repository": {
@@ -101,7 +104,7 @@
 			"patterns": [
 				{
 					"name": "keyword.control.qsharp",
-					"match": "\\b(use|using|borrow|borrowing|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\\b"
+					"match": "\\b(using|borrow|borrowing|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\\b"
 				},
 				{
 					"name": "keyword.other.qsharp",
@@ -224,6 +227,9 @@
 						},
 						{
 							"include": "#local-declaration"
+						},
+						{
+							"include": "#quantum-declaration"
 						},
 						{
 							"include": "#expression-operators"
@@ -672,6 +678,55 @@
 				{
 					"name": "keyword.operator.logical.qsharp",
 					"match": "\\b(not|and|or)\\b"
+				}
+			]
+		},
+		"quantum-declaration": {
+			"begin": "(?x)\n(?:\\b(?:(use)|(borrow))\\b\\s*)\n([_[:alpha:]][_[:alnum:]]*)\\b\\s*\n(?=;|=|\\))",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.other.use.qsharp"
+				},
+				"2": {
+					"name": "keyword.other.borrow.qsharp"
+				},
+				"3": {
+					"name": "entity.name.variable.local.qsharp"
+				}
+			},
+			"end": "(?=;|\\))",
+			"patterns": [
+				{
+					"include": "#quantum-initializer"
+				}
+			]
+		},
+		"quantum-initializer": {
+			"begin": "(?<!=|!)(=)(?!=|>)",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.operator.assignment.qsharp"
+				}
+			},
+			"end": "(?=[,\\)\\];}])",
+			"patterns": [
+				{
+					"include": "#expression-operators"
+				},
+				{
+					"include": "#callable-invocation"
+				},
+				{
+					"include": "#types"
+				},
+				{
+					"include": "#literals"
+				},
+				{
+					"include": "#identifier"
+				},
+				{
+					"include": "#array-creation-expression"
 				}
 			]
 		}

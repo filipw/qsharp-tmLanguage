@@ -64,6 +64,10 @@
         <key>include</key>
         <string>#local-declaration</string>
       </dict>
+      <dict>
+        <key>include</key>
+        <string>#quantum-declaration</string>
+      </dict>
     </array>
     <key>repository</key>
     <dict>
@@ -152,7 +156,7 @@
             <key>name</key>
             <string>keyword.control.qsharp</string>
             <key>match</key>
-            <string>\b(use|using|borrow|borrowing|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b</string>
+            <string>\b(using|borrow|borrowing|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b</string>
           </dict>
           <dict>
             <key>name</key>
@@ -336,6 +340,10 @@
               <dict>
                 <key>include</key>
                 <string>#local-declaration</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#quantum-declaration</string>
               </dict>
               <dict>
                 <key>include</key>
@@ -1027,6 +1035,83 @@
             <string>keyword.operator.logical.qsharp</string>
             <key>match</key>
             <string>\b(not|and|or)\b</string>
+          </dict>
+        </array>
+      </dict>
+      <key>quantum-declaration</key>
+      <dict>
+        <key>begin</key>
+        <string>(?x)
+(?:\b(?:(use)|(borrow))\b\s*)
+([_[:alpha:]][_[:alnum:]]*)\b\s*
+(?=;|=|\))</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>1</key>
+          <dict>
+            <key>name</key>
+            <string>keyword.other.use.qsharp</string>
+          </dict>
+          <key>2</key>
+          <dict>
+            <key>name</key>
+            <string>keyword.other.borrow.qsharp</string>
+          </dict>
+          <key>3</key>
+          <dict>
+            <key>name</key>
+            <string>entity.name.variable.local.qsharp</string>
+          </dict>
+        </dict>
+        <key>end</key>
+        <string>(?=;|\))</string>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>#quantum-initializer</string>
+          </dict>
+        </array>
+      </dict>
+      <key>quantum-initializer</key>
+      <dict>
+        <key>begin</key>
+        <string>(?&lt;!=|!)(=)(?!=|&gt;)</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>1</key>
+          <dict>
+            <key>name</key>
+            <string>keyword.operator.assignment.qsharp</string>
+          </dict>
+        </dict>
+        <key>end</key>
+        <string>(?=[,\)\];}])</string>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>#expression-operators</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#callable-invocation</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#types</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#literals</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#identifier</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#array-creation-expression</string>
           </dict>
         </array>
       </dict>
