@@ -4,7 +4,7 @@ import { tokenize, createToken, Token } from './utils/tokenize';
 describe("Quantum: Allocation", () => {
     before(() => { should(); });
 
-    it("Single qubit", async () => {
+    it("Use single qubit", async () => {
         const tokens = await tokenize(`use a = Qubit();`);
         tokens.should.deep.equal([
             createToken("use", "keyword.other.use.qsharp"),
@@ -19,7 +19,7 @@ describe("Quantum: Allocation", () => {
         ]);
     });
 
-    it("Qubit array", async () => {
+    it("Use qubit array", async () => {
         const tokens = await tokenize(`use a = Qubit[2];`);
         tokens.should.deep.equal([
             createToken("use", "keyword.other.use.qsharp"),
