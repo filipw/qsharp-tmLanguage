@@ -156,7 +156,7 @@
             <key>name</key>
             <string>keyword.control.qsharp</string>
             <key>match</key>
-            <string>\b(using|borrow|borrowing|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b</string>
+            <string>\b(using|borrowing|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b</string>
           </dict>
           <dict>
             <key>name</key>

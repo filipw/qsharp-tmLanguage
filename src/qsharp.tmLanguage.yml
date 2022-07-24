@@ -49,7 +49,7 @@ repository:
   keywords:
     patterns:
       - name: keyword.control.qsharp
-        match: \b(using|borrow|borrowing|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b
+        match: \b(using|borrowing|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b
       - name: keyword.other.qsharp
         match: \b(new|w\/)\b
       - comment: C# reserved words which can't be used in Q#
