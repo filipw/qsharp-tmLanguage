@@ -19,6 +19,29 @@ describe("Expression: Logical", () => {
         ]);
     });
 
+    it("Argument not", async () => {
+        const tokens = await tokenize(`Fact(not And(false, false), "And returned wrong output.");`);
+        tokens.should.deep.equal([
+            createToken("Fact", "entity.name.function.qsharp"),
+            createToken("(", "punctuation.parenthesis.open.qsharp"),
+            createToken("not", "keyword.operator.logical.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("And", "entity.name.function.qsharp"),
+            createToken("(", "punctuation.parenthesis.open.qsharp"),
+            createToken("false", "constant.language.boolean.false.qsharp"),
+            createToken(",", "punctuation.separator.comma.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("false", "constant.language.boolean.false.qsharp"),
+            createToken(")", "punctuation.parenthesis.close.qsharp"),
+            createToken(",", "punctuation.separator.comma.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("\"", "string.quoted.double.qsharp"),
+            createToken("And returned wrong output.", "string.quoted.double.qsharp"),
+            createToken("\"", "string.quoted.double.qsharp"),
+            createToken(")", "punctuation.parenthesis.close.qsharp"),
+        ]);
+    });
+
     it("Declaration or", async () => {
         const tokens = await tokenize(`let a = b or c;`);
         tokens.should.deep.equal([

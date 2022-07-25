@@ -394,10 +394,10 @@
 					"include": "#literals"
 				},
 				{
-					"include": "#identifier"
+					"include": "#expression-operators"
 				},
 				{
-					"include": "#expression-operators"
+					"include": "#identifier"
 				}
 			]
 		},

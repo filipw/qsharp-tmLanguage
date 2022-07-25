@@ -601,11 +601,11 @@
           </dict>
           <dict>
             <key>include</key>
-            <string>#identifier</string>
+            <string>#expression-operators</string>
           </dict>
           <dict>
             <key>include</key>
-            <string>#expression-operators</string>
+            <string>#identifier</string>
           </dict>
         </array>
       </dict>

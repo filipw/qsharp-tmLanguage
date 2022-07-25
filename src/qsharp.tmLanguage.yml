@@ -220,8 +220,8 @@ repository:
       - include: '#types'
       - include: '#library'
       - include: '#literals'
-      - include: '#identifier'
       - include: '#expression-operators'
+      - include: '#identifier'
 
   parameter:
     begin: ([_[:alpha:]][_[:alnum:]]*)\s*(:)
