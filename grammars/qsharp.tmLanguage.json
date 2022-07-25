@@ -45,6 +45,9 @@
 			"include": "#local-declaration"
 		},
 		{
+			"include": "#local-assignment"
+		},
+		{
 			"include": "#quantum-declaration"
 		}
 	],
@@ -104,7 +107,7 @@
 			"patterns": [
 				{
 					"name": "keyword.control.qsharp",
-					"match": "\\b(using|borrowing|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\\b"
+					"match": "\\b(using|borrowing|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\\b"
 				},
 				{
 					"name": "keyword.other.qsharp",
@@ -227,6 +230,9 @@
 						},
 						{
 							"include": "#local-declaration"
+						},
+						{
+							"include": "#local-assignment"
 						},
 						{
 							"include": "#quantum-declaration"
@@ -628,6 +634,23 @@
 					"name": "keyword.other.mutable.qsharp"
 				},
 				"3": {
+					"name": "entity.name.variable.local.qsharp"
+				}
+			},
+			"end": "(?=;|\\))",
+			"patterns": [
+				{
+					"include": "#variable-initializer"
+				}
+			]
+		},
+		"local-assignment": {
+			"begin": "(?x)\n(?:\\b(set)\\b\\s*)\n([_[:alpha:]][_[:alnum:]]*)\\b\\s*\n(?=;|=|\\))",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.other.set.qsharp"
+				},
+				"2": {
 					"name": "entity.name.variable.local.qsharp"
 				}
 			},

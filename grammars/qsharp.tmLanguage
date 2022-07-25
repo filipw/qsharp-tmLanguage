@@ -66,6 +66,10 @@
       </dict>
       <dict>
         <key>include</key>
+        <string>#local-assignment</string>
+      </dict>
+      <dict>
+        <key>include</key>
         <string>#quantum-declaration</string>
       </dict>
     </array>
@@ -156,7 +160,7 @@
             <key>name</key>
             <string>keyword.control.qsharp</string>
             <key>match</key>
-            <string>\b(using|borrowing|set|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b</string>
+            <string>\b(using|borrowing|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b</string>
           </dict>
           <dict>
             <key>name</key>
@@ -340,6 +344,10 @@
               <dict>
                 <key>include</key>
                 <string>#local-declaration</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#local-assignment</string>
               </dict>
               <dict>
                 <key>include</key>
@@ -961,6 +969,36 @@
             <string>keyword.other.mutable.qsharp</string>
           </dict>
           <key>3</key>
+          <dict>
+            <key>name</key>
+            <string>entity.name.variable.local.qsharp</string>
+          </dict>
+        </dict>
+        <key>end</key>
+        <string>(?=;|\))</string>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>#variable-initializer</string>
+          </dict>
+        </array>
+      </dict>
+      <key>local-assignment</key>
+      <dict>
+        <key>begin</key>
+        <string>(?x)
+(?:\b(set)\b\s*)
+([_[:alpha:]][_[:alnum:]]*)\b\s*
+(?=;|=|\))</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>1</key>
+          <dict>
+            <key>name</key>
+            <string>keyword.other.set.qsharp</string>
+          </dict>
+          <key>2</key>
           <dict>
             <key>name</key>
             <string>entity.name.variable.local.qsharp</string>
