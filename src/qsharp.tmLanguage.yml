@@ -370,7 +370,7 @@ repository:
       (?x)
       (?:\b(set)\b\s*)
       ([_[:alpha:]][_[:alnum:]]*)\b\s*
-      (?=;|=|\))
+      (?=;|\+=|-=|=|\))
     beginCaptures:
       '1': { name: keyword.other.set.qsharp }
       '2': { name: entity.name.variable.local.qsharp }
@@ -379,9 +379,11 @@ repository:
     - include: '#variable-initializer'
 
   variable-initializer:
-    begin: (?<!=|!)(=)(?!=|>)
+    begin: (?<!=|!)(?:(\+=)|(-=)|(=))(?!=|>)
     beginCaptures:
-      '1': { name: keyword.operator.assignment.qsharp }
+      '1': { name: keyword.operator.assignment.increment.qsharp }
+      '2': { name: keyword.operator.assignment.decrement.qsharp }
+      '3': { name: keyword.operator.assignment.qsharp }
     end: (?=[,\)\];}])
     patterns:
     - include: '#expression-operators'

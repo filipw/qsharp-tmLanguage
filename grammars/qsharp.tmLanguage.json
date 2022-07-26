@@ -645,7 +645,7 @@
 			]
 		},
 		"local-assignment": {
-			"begin": "(?x)\n(?:\\b(set)\\b\\s*)\n([_[:alpha:]][_[:alnum:]]*)\\b\\s*\n(?=;|=|\\))",
+			"begin": "(?x)\n(?:\\b(set)\\b\\s*)\n([_[:alpha:]][_[:alnum:]]*)\\b\\s*\n(?=;|\\+=|-=|=|\\))",
 			"beginCaptures": {
 				"1": {
 					"name": "keyword.other.set.qsharp"
@@ -662,9 +662,15 @@
 			]
 		},
 		"variable-initializer": {
-			"begin": "(?<!=|!)(=)(?!=|>)",
+			"begin": "(?<!=|!)(?:(\\+=)|(-=)|(=))(?!=|>)",
 			"beginCaptures": {
 				"1": {
+					"name": "keyword.operator.assignment.increment.qsharp"
+				},
+				"2": {
+					"name": "keyword.operator.assignment.decrement.qsharp"
+				},
+				"3": {
 					"name": "keyword.operator.assignment.qsharp"
 				}
 			},

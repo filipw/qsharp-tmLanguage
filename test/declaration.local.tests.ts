@@ -43,6 +43,32 @@ describe("Local declarations", () => {
         ]);
     });
 
+    it("Set increment", async () => {
+        const tokens = await tokenize(`set foo += 1.0;`);
+        tokens.should.deep.equal([
+            createToken("set", "keyword.other.set.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("foo", "entity.name.variable.local.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("+=", "keyword.operator.assignment.increment.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("1.0", "constant.numeric.decimal.qsharp"),
+        ]);
+    });
+
+    it("Set decrement", async () => {
+        const tokens = await tokenize(`set foo -= 1.0;`);
+        tokens.should.deep.equal([
+            createToken("set", "keyword.other.set.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("foo", "entity.name.variable.local.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("-=", "keyword.operator.assignment.decrement.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("1.0", "constant.numeric.decimal.qsharp"),
+        ]);
+    });
+
     it("Immutable array", async () => {
         const tokens = await tokenize("let pauliGroup = [PauliX, PauliY, PauliZ];");
         tokens.should.deep.equal([

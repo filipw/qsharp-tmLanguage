@@ -990,7 +990,7 @@
         <string>(?x)
 (?:\b(set)\b\s*)
 ([_[:alpha:]][_[:alnum:]]*)\b\s*
-(?=;|=|\))</string>
+(?=;|\+=|-=|=|\))</string>
         <key>beginCaptures</key>
         <dict>
           <key>1</key>
@@ -1017,10 +1017,20 @@
       <key>variable-initializer</key>
       <dict>
         <key>begin</key>
-        <string>(?&lt;!=|!)(=)(?!=|&gt;)</string>
+        <string>(?&lt;!=|!)(?:(\+=)|(-=)|(=))(?!=|&gt;)</string>
         <key>beginCaptures</key>
         <dict>
           <key>1</key>
+          <dict>
+            <key>name</key>
+            <string>keyword.operator.assignment.increment.qsharp</string>
+          </dict>
+          <key>2</key>
+          <dict>
+            <key>name</key>
+            <string>keyword.operator.assignment.decrement.qsharp</string>
+          </dict>
+          <key>3</key>
           <dict>
             <key>name</key>
             <string>keyword.operator.assignment.qsharp</string>
