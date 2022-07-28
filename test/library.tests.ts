@@ -13,4 +13,9 @@ describe("Library", () => {
         const tokens = await tokenize("H(qubit)");
         tokens.should.deep.equal([createToken("H", "support.function.quantum.qsharp")]);
     });
+
+    it("CNOT", async () => {
+        const tokens = await tokenize("CNOT(qubit1, qubit2)");
+        tokens.should.deep.equal([createToken("CNOT", "support.function.quantum.qsharp")]);
+    });
 });
