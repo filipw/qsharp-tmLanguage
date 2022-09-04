@@ -38,4 +38,9 @@ describe("Library", () => {
         const tokens = await tokenize("M(qubit)");
         tokens.should.deep.equal([createToken("M", "support.function.quantum.qsharp")]);
     });
+
+    it("MultiM", async () => {
+        const tokens = await tokenize("MultiM(qubits)");
+        tokens.should.deep.equal([createToken("MultiM", "support.function.quantum.qsharp")]);
+    });
 });
