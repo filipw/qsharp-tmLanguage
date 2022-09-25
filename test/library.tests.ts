@@ -94,6 +94,17 @@ describe("Library", () => {
         ]);
     });
 
+    it("R1Frac", async () => {
+        const tokens = await tokenize("R1Frac(2, 3, qubit);");
+        tokens.should.deep.equal([
+            createToken("R1Frac", "support.function.quantum.qsharp"),
+            createToken("(", "source.qsharp"),
+            createToken("2", "constant.numeric.decimal.qsharp"),
+            createToken(", ", "source.qsharp"),
+            createToken("3", "constant.numeric.decimal.qsharp"),
+        ]);
+    });
+
     it("M", async () => {
         const tokens = await tokenize("M(qubit)");
         tokens.should.deep.equal([createToken("M", "support.function.quantum.qsharp")]);
