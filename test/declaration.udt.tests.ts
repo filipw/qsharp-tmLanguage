@@ -5,8 +5,10 @@ describe("User Defined Type declarations", () => {
     before(() => { should(); });
 
     it("Simple UDT without parenthesis", async () => {
-        const tokens = await tokenize(`newtype LogicalRegister = Qubit[];`);
+        const tokens = await tokenize(`internal newtype LogicalRegister = Qubit[];`);
         tokens.should.deep.equal([
+            createToken("internal", "keyword.other.qsharp"),
+            createToken(" ", "source.qsharp"),
             createToken("newtype", "keyword.other.udt.qsharp"),
             createToken(" ", "source.qsharp"),
             createToken("LogicalRegister", "entity.name.type.udt.qsharp"),
