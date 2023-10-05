@@ -15,6 +15,7 @@ patterns:
 - include: '#udt-declaration'
 - include: '#array-creation-expression'
 - include: '#local-declaration'
+- include: '#array-assignment'
 - include: '#local-assignment'
 - include: '#quantum-declaration'
 
@@ -118,6 +119,7 @@ repository:
         - include: '#open-directive'
         - include: '#array-creation-expression'
         - include: '#local-declaration'
+        - include: '#array-assignment'
         - include: '#local-assignment'
         - include: '#quantum-declaration'
         - include: '#expression-operators'
@@ -365,6 +367,28 @@ repository:
     patterns:
     - include: '#variable-initializer'
 
+  array-assignment:
+    begin: |-
+      (?x)
+      (?:\b(set)\b\s*)
+      ([_[:alpha:]][_[:alnum:]]*)\b\s*
+      (w\/=)\s*
+      (\d+)\s*
+      (<-)\s*
+    beginCaptures:
+      '1': { name: keyword.other.set.qsharp }
+      '2': { name: entity.name.variable.local.qsharp }
+      '3': { name: keyword.operator.assignment.qsharp }
+      '4': { name: constant.numeric.decimal.qsharp }
+      '5': { name: keyword.operator.assignment.qsharp }
+    end: (?=;|\))
+    patterns:
+      - include: '#callable-invocation'
+      - include: '#strings'
+      - include: '#types'
+      - include: '#literals'
+      - include: '#identifier'
+
   local-assignment:
     begin: |-
       (?x)
@@ -379,7 +403,7 @@ repository:
     - include: '#variable-initializer'
 
   variable-initializer:
-    begin: (?<!=|!)(?:(\+=)|(-=)|(=))(?!=|>)
+    begin: (?<!=|!)(?:(\+=)|(-=)|(=)|(<-))(?!=|>)
     beginCaptures:
       '1': { name: keyword.operator.assignment.increment.qsharp }
       '2': { name: keyword.operator.assignment.decrement.qsharp }
@@ -394,6 +418,7 @@ repository:
     - include: '#literals'
     - include: '#identifier'
     - include: '#array-creation-expression'
+
 
   expression-operators:
     patterns:

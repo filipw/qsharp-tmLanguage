@@ -66,6 +66,10 @@
       </dict>
       <dict>
         <key>include</key>
+        <string>#array-assignment</string>
+      </dict>
+      <dict>
+        <key>include</key>
         <string>#local-assignment</string>
       </dict>
       <dict>
@@ -344,6 +348,10 @@
               <dict>
                 <key>include</key>
                 <string>#local-declaration</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#array-assignment</string>
               </dict>
               <dict>
                 <key>include</key>
@@ -984,6 +992,69 @@
           </dict>
         </array>
       </dict>
+      <key>array-assignment</key>
+      <dict>
+        <key>begin</key>
+        <string>(?x)
+(?:\b(set)\b\s*)
+([_[:alpha:]][_[:alnum:]]*)\b\s*
+(w\/=)\s*
+(\d+)\s*
+(&lt;-)\s*</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>1</key>
+          <dict>
+            <key>name</key>
+            <string>keyword.other.set.qsharp</string>
+          </dict>
+          <key>2</key>
+          <dict>
+            <key>name</key>
+            <string>entity.name.variable.local.qsharp</string>
+          </dict>
+          <key>3</key>
+          <dict>
+            <key>name</key>
+            <string>keyword.operator.assignment.qsharp</string>
+          </dict>
+          <key>4</key>
+          <dict>
+            <key>name</key>
+            <string>constant.numeric.decimal.qsharp</string>
+          </dict>
+          <key>5</key>
+          <dict>
+            <key>name</key>
+            <string>keyword.operator.assignment.qsharp</string>
+          </dict>
+        </dict>
+        <key>end</key>
+        <string>(?=;|\))</string>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>#callable-invocation</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#strings</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#types</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#literals</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#identifier</string>
+          </dict>
+        </array>
+      </dict>
       <key>local-assignment</key>
       <dict>
         <key>begin</key>
@@ -1017,7 +1088,7 @@
       <key>variable-initializer</key>
       <dict>
         <key>begin</key>
-        <string>(?&lt;!=|!)(?:(\+=)|(-=)|(=))(?!=|&gt;)</string>
+        <string>(?&lt;!=|!)(?:(\+=)|(-=)|(=)|(&lt;-))(?!=|&gt;)</string>
         <key>beginCaptures</key>
         <dict>
           <key>1</key>

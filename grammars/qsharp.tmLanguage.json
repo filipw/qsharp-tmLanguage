@@ -45,6 +45,9 @@
 			"include": "#local-declaration"
 		},
 		{
+			"include": "#array-assignment"
+		},
+		{
 			"include": "#local-assignment"
 		},
 		{
@@ -230,6 +233,9 @@
 						},
 						{
 							"include": "#local-declaration"
+						},
+						{
+							"include": "#array-assignment"
 						},
 						{
 							"include": "#local-assignment"
@@ -644,6 +650,44 @@
 				}
 			]
 		},
+		"array-assignment": {
+			"begin": "(?x)\n(?:\\b(set)\\b\\s*)\n([_[:alpha:]][_[:alnum:]]*)\\b\\s*\n(w\\/=)\\s*\n(\\d+)\\s*\n(<-)\\s*",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.other.set.qsharp"
+				},
+				"2": {
+					"name": "entity.name.variable.local.qsharp"
+				},
+				"3": {
+					"name": "keyword.operator.assignment.qsharp"
+				},
+				"4": {
+					"name": "constant.numeric.decimal.qsharp"
+				},
+				"5": {
+					"name": "keyword.operator.assignment.qsharp"
+				}
+			},
+			"end": "(?=;|\\))",
+			"patterns": [
+				{
+					"include": "#callable-invocation"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#types"
+				},
+				{
+					"include": "#literals"
+				},
+				{
+					"include": "#identifier"
+				}
+			]
+		},
 		"local-assignment": {
 			"begin": "(?x)\n(?:\\b(set)\\b\\s*)\n([_[:alpha:]][_[:alnum:]]*)\\b\\s*\n(?=;|\\+=|-=|=|\\))",
 			"beginCaptures": {
@@ -662,7 +706,7 @@
 			]
 		},
 		"variable-initializer": {
-			"begin": "(?<!=|!)(?:(\\+=)|(-=)|(=))(?!=|>)",
+			"begin": "(?<!=|!)(?:(\\+=)|(-=)|(=)|(<-))(?!=|>)",
 			"beginCaptures": {
 				"1": {
 					"name": "keyword.operator.assignment.increment.qsharp"
