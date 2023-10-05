@@ -651,7 +651,7 @@
 			]
 		},
 		"array-assignment": {
-			"begin": "(?x)\n(?:\\b(set)\\b\\s*)\n([_[:alpha:]][_[:alnum:]]*)\\b\\s*\n(w\\/=)\\s*\n(\\d+)\\s*\n(<-)\\s*",
+			"begin": "(?x)\n(?:\\b(set)\\b\\s*)\n([_[:alpha:]][_[:alnum:]]*)\\b\\s*\n(?:(=)\\s*([_[:alpha:]][_[:alnum:]]*)\\b\\s*(w\\/)\\s*|\\b(w\\/=)\\s*)?\n(\\d+)\\s*\n(<-)\\s*",
 			"beginCaptures": {
 				"1": {
 					"name": "keyword.other.set.qsharp"
@@ -663,9 +663,18 @@
 					"name": "keyword.operator.assignment.qsharp"
 				},
 				"4": {
-					"name": "constant.numeric.decimal.qsharp"
+					"name": "entity.name.variable.local.qsharp"
 				},
 				"5": {
+					"name": "keyword.operator.assignment.qsharp"
+				},
+				"6": {
+					"name": "keyword.operator.assignment.qsharp"
+				},
+				"7": {
+					"name": "constant.numeric.decimal.qsharp"
+				},
+				"8": {
 					"name": "keyword.operator.assignment.qsharp"
 				}
 			},
@@ -751,6 +760,10 @@
 				{
 					"name": "keyword.operator.logical.qsharp",
 					"match": "\\b(not|and|or)\\b"
+				},
+				{
+					"name": "keyword.operator.comparison.qsharp",
+					"match": "==|!="
 				}
 			]
 		},

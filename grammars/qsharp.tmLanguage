@@ -998,7 +998,7 @@
         <string>(?x)
 (?:\b(set)\b\s*)
 ([_[:alpha:]][_[:alnum:]]*)\b\s*
-(w\/=)\s*
+(?:(=)\s*([_[:alpha:]][_[:alnum:]]*)\b\s*(w\/)\s*|\b(w\/=)\s*)?
 (\d+)\s*
 (&lt;-)\s*</string>
         <key>beginCaptures</key>
@@ -1021,9 +1021,24 @@
           <key>4</key>
           <dict>
             <key>name</key>
-            <string>constant.numeric.decimal.qsharp</string>
+            <string>entity.name.variable.local.qsharp</string>
           </dict>
           <key>5</key>
+          <dict>
+            <key>name</key>
+            <string>keyword.operator.assignment.qsharp</string>
+          </dict>
+          <key>6</key>
+          <dict>
+            <key>name</key>
+            <string>keyword.operator.assignment.qsharp</string>
+          </dict>
+          <key>7</key>
+          <dict>
+            <key>name</key>
+            <string>constant.numeric.decimal.qsharp</string>
+          </dict>
+          <key>8</key>
           <dict>
             <key>name</key>
             <string>keyword.operator.assignment.qsharp</string>
@@ -1154,6 +1169,12 @@
             <string>keyword.operator.logical.qsharp</string>
             <key>match</key>
             <string>\b(not|and|or)\b</string>
+          </dict>
+          <dict>
+            <key>name</key>
+            <string>keyword.operator.comparison.qsharp</string>
+            <key>match</key>
+            <string>==|!=</string>
           </dict>
         </array>
       </dict>

@@ -367,20 +367,25 @@ repository:
     patterns:
     - include: '#variable-initializer'
 
+  # note this captures both set foo w/= 0 <- 1 as well as set foo = foo w/ 0 <-1
+  # this is good enough for now, but probably the latter should be moved out
   array-assignment:
     begin: |-
       (?x)
       (?:\b(set)\b\s*)
       ([_[:alpha:]][_[:alnum:]]*)\b\s*
-      (w\/=)\s*
+      (?:(=)\s*([_[:alpha:]][_[:alnum:]]*)\b\s*(w\/)\s*|\b(w\/=)\s*)?
       (\d+)\s*
       (<-)\s*
     beginCaptures:
       '1': { name: keyword.other.set.qsharp }
       '2': { name: entity.name.variable.local.qsharp }
       '3': { name: keyword.operator.assignment.qsharp }
-      '4': { name: constant.numeric.decimal.qsharp }
+      '4': { name: entity.name.variable.local.qsharp }
       '5': { name: keyword.operator.assignment.qsharp }
+      '6': { name: keyword.operator.assignment.qsharp }
+      '7': { name: constant.numeric.decimal.qsharp }
+      '8': { name: keyword.operator.assignment.qsharp }
     end: (?=;|\))
     patterns:
       - include: '#callable-invocation'
@@ -424,6 +429,8 @@ repository:
     patterns:
     - name: keyword.operator.logical.qsharp
       match: \b(not|and|or)\b
+    - name: keyword.operator.comparison.qsharp
+      match: ==|!=
 
   quantum-declaration:
     begin: |-
