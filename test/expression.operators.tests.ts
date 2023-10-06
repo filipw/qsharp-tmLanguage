@@ -1,11 +1,12 @@
 import { should } from 'chai';
 import { tokenize, createToken, Token } from './utils/tokenize';
 
-describe("Expression: Logical", () => {
+describe("Expression Operators", () => {
     before(() => { should(); });
 
-    it("Declaration not", async () => {
-        const tokens = await tokenize(`let a = not b;`);
+    let declarationNot = "let a = not b;";
+    it(declarationNot, async () => {
+        const tokens = await tokenize(declarationNot);
         tokens.should.deep.equal([
             createToken("let", "keyword.other.let.qsharp"),
             createToken(" ", "source.qsharp"),
@@ -19,8 +20,9 @@ describe("Expression: Logical", () => {
         ]);
     });
 
-    it("Argument not", async () => {
-        const tokens = await tokenize(`Fact(not And(false, false), "And returned wrong output.");`);
+    let argumentNot = `Fact(not And(false, false), "And returned wrong output.");`
+    it(argumentNot, async () => {
+        const tokens = await tokenize(argumentNot);
         tokens.should.deep.equal([
             createToken("Fact", "entity.name.function.qsharp"),
             createToken("(", "punctuation.parenthesis.open.qsharp"),
@@ -42,8 +44,9 @@ describe("Expression: Logical", () => {
         ]);
     });
 
-    it("Declaration or", async () => {
-        const tokens = await tokenize(`let a = b or c;`);
+    let declarationOr = "let a = b or c;";
+    it(declarationOr, async () => {
+        const tokens = await tokenize(declarationOr);
         tokens.should.deep.equal([
             createToken("let", "keyword.other.let.qsharp"),
             createToken(" ", "source.qsharp"),
@@ -59,8 +62,9 @@ describe("Expression: Logical", () => {
         ]);
     });
 
-    it("Declaration and", async () => {
-        const tokens = await tokenize(`let a = b and c;`);
+    let declarationAnd = "let a = b and c;";
+    it(declarationAnd, async () => {
+        const tokens = await tokenize(declarationAnd);
         tokens.should.deep.equal([
             createToken("let", "keyword.other.let.qsharp"),
             createToken(" ", "source.qsharp"),
@@ -73,6 +77,23 @@ describe("Expression: Logical", () => {
             createToken("and", "keyword.operator.logical.qsharp"),
             createToken(" ", "source.qsharp"),
             createToken("c", "variable.other.readwrite.qsharp"),
+        ]);
+    });
+
+    let comparison = `if foo == false {}`;
+    it(comparison, async () => {
+        const tokens = await tokenize(comparison);
+        tokens.should.deep.equal([
+            createToken("if", "keyword.control.conditional.if.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("foo", "variable.other.readwrite.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("==", "keyword.operator.comparison.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("false", "constant.language.boolean.false.qsharp"),
+            createToken(" ", "source.qsharp"),
+            createToken("{", "punctuation.curlybrace.open.qsharp"),
+            createToken("}", "punctuation.curlybrace.close.qsharp"),
         ]);
     });
 });

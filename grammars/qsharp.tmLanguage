@@ -76,6 +76,10 @@
         <key>include</key>
         <string>#quantum-declaration</string>
       </dict>
+      <dict>
+        <key>include</key>
+        <string>#if-statement</string>
+      </dict>
     </array>
     <key>repository</key>
     <dict>
@@ -164,7 +168,7 @@
             <key>name</key>
             <string>keyword.control.qsharp</string>
             <key>match</key>
-            <string>\b(using|borrowing|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b</string>
+            <string>\b(using|borrowing|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b</string>
           </dict>
           <dict>
             <key>name</key>
@@ -364,6 +368,10 @@
               <dict>
                 <key>include</key>
                 <string>#expression-operators</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#if-statement</string>
               </dict>
             </array>
           </dict>
@@ -1157,6 +1165,78 @@
           <dict>
             <key>include</key>
             <string>#array-creation-expression</string>
+          </dict>
+        </array>
+      </dict>
+      <key>if-statement</key>
+      <dict>
+        <key>begin</key>
+        <string>(?&lt;!\.)\b(if)\b\s*(?=\S)</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>1</key>
+          <dict>
+            <key>name</key>
+            <string>keyword.control.conditional.if.qsharp</string>
+          </dict>
+        </dict>
+        <key>end</key>
+        <string>(?&lt;=})|(?=;)</string>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>#expression-operators</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#callable-invocation</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#strings</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#types</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#library</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#literals</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#identifier</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#array-creation-expression</string>
+          </dict>
+          <dict>
+            <key>begin</key>
+            <string>\{</string>
+            <key>beginCaptures</key>
+            <dict>
+              <key>0</key>
+              <dict>
+                <key>name</key>
+                <string>punctuation.curlybrace.open.qsharp</string>
+              </dict>
+            </dict>
+            <key>end</key>
+            <string>\}</string>
+            <key>endCaptures</key>
+            <dict>
+              <key>0</key>
+              <dict>
+                <key>name</key>
+                <string>punctuation.curlybrace.close.qsharp</string>
+              </dict>
+            </dict>
           </dict>
         </array>
       </dict>

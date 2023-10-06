@@ -18,6 +18,7 @@ patterns:
 - include: '#array-assignment'
 - include: '#local-assignment'
 - include: '#quantum-declaration'
+- include: '#if-statement'
 
 repository:
   literals:
@@ -51,7 +52,7 @@ repository:
   keywords:
     patterns:
       - name: keyword.control.qsharp
-        match: \b(using|borrowing|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b
+        match: \b(using|borrowing|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\b
       - name: keyword.other.qsharp
         match: \b(new|w\/)\b
       - comment: C# reserved words which can't be used in Q#
@@ -123,6 +124,7 @@ repository:
         - include: '#local-assignment'
         - include: '#quantum-declaration'
         - include: '#expression-operators'
+        - include: '#if-statement'
 
   callable-invocation: 
     begin: |-
@@ -424,6 +426,28 @@ repository:
     - include: '#identifier'
     - include: '#array-creation-expression'
 
+  if-statement:
+    begin: (?<!\.)\b(if)\b\s*(?=\S)
+    beginCaptures:
+      '1': { name: keyword.control.conditional.if.qsharp }
+    end: (?<=})|(?=;)
+    patterns:
+    - include: '#expression-operators'
+    - include: '#callable-invocation'
+    - include: '#strings'
+    - include: '#types'
+    - include: '#library'
+    - include: '#literals'
+    - include: '#identifier'
+    - include: '#array-creation-expression'
+    - begin: \{
+      beginCaptures:
+        '0':
+          name: punctuation.curlybrace.open.qsharp
+      end: \}
+      endCaptures:
+        '0':
+          name: punctuation.curlybrace.close.qsharp
 
   expression-operators:
     patterns:

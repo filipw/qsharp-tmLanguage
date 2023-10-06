@@ -52,6 +52,9 @@
 		},
 		{
 			"include": "#quantum-declaration"
+		},
+		{
+			"include": "#if-statement"
 		}
 	],
 	"repository": {
@@ -110,7 +113,7 @@
 			"patterns": [
 				{
 					"name": "keyword.control.qsharp",
-					"match": "\\b(using|borrowing|if|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\\b"
+					"match": "\\b(using|borrowing|elif|else|repeat|until|fixup|for|in|while|return|fail|within|apply)\\b"
 				},
 				{
 					"name": "keyword.other.qsharp",
@@ -245,6 +248,9 @@
 						},
 						{
 							"include": "#expression-operators"
+						},
+						{
+							"include": "#if-statement"
 						}
 					]
 				}
@@ -752,6 +758,55 @@
 				},
 				{
 					"include": "#array-creation-expression"
+				}
+			]
+		},
+		"if-statement": {
+			"begin": "(?<!\\.)\\b(if)\\b\\s*(?=\\S)",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.control.conditional.if.qsharp"
+				}
+			},
+			"end": "(?<=})|(?=;)",
+			"patterns": [
+				{
+					"include": "#expression-operators"
+				},
+				{
+					"include": "#callable-invocation"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#types"
+				},
+				{
+					"include": "#library"
+				},
+				{
+					"include": "#literals"
+				},
+				{
+					"include": "#identifier"
+				},
+				{
+					"include": "#array-creation-expression"
+				},
+				{
+					"begin": "\\{",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.curlybrace.open.qsharp"
+						}
+					},
+					"end": "\\}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.curlybrace.close.qsharp"
+						}
+					}
 				}
 			]
 		},
